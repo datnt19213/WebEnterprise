@@ -1,0 +1,28 @@
+:root {
+  --white-color: #fafcfe;
+  --light-blue-white: #dce4ef; /* background of row data in table*/
+  --light-blue-purple: #b2b4c3; /* header table data*/
+  --light-blue-gray: #6c7398; /* background download button*/
+  --cream-blue: #5666ad; /* edit btn*/
+  --dark-blue: #16225b; /* outline/border/ background sidebar*/
+
+  --cream-green: #00873e;
+  /* use for border, text of accept/ok/agree button */
+
+  --cream-red: #cd001a;
+  /* use for border, text of delete/cancel/disagree button*/
+
+  --font: "Sans-serif";
+  /* font-family of text */
+
+  --rem-05: 0.5rem;
+  --rem-1: 1rem;
+  --rem-15: 1.5rem;
+  --rem-2: 2rem;
+  --rem-25: 2.5rem;
+  --rem-3: 3rem;
+}
+
+html {
+  font-size: 62.5%;
+}
