@@ -4,10 +4,11 @@
   --light-blue-purple: #b2b4c3; /* header table data*/
   --light-blue-gray: #6c7398; /* background download button*/
   --cream-blue: #5666ad; /* edit btn*/
-  --dark-blue: #16225b; /* outline/border/ background sidebar*/
+  --dark-blue: #16225b; /* outline/border/text background sidebar*/
+  /* Hover effect: change border, text color to WHITE and background is border and text color*/
 
   --cream-green: #00873e;
-  /* use for border, text of accept/ok/agree button */
+  /* use for border, text of accept/ok/agree button on confirm form */
 
   --cream-red: #cd001a;
   /* use for border, text of delete/cancel/disagree button*/
@@ -21,6 +22,15 @@
   --rem-2: 2rem;
   --rem-25: 2.5rem;
   --rem-3: 3rem;
+
+  /*
+  
+  border width: 1px and solid;
+  form title: bold;
+  border radius button, input: height;
+  
+  
+  */
 }
 
 html {
