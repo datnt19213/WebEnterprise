@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/root.css">
+    <title>QA Departments</title>
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .qaDepartment-container {
+            color: var(--licorice);
+            width: 98%;
+            margin: 1%;
+            user-select: none;
+        }
+
+        header {
+            width: 100%;
+            font-size: var(--rem-25);
+            font-weight: bold;
+            text-transform: capitalize;
+            text-decoration-line: underline;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .tableManagement {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            font-size: var(--rem-15);
+            margin-top: 1%;
+            border-radius: 1.5rem;
+        }
+
+        .thead{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            background: var(--light-blue-purple);
+            border-radius: 1.5rem;
+        }
+
+        .tbTitle {
+            width: 25%;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            font-size: var(--rem-2);
+            padding: 1%;
+        }
+
+        .tbody{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            background: var(--light-blue-white);
+            border-radius: 1.5rem;
+            margin-top: 0.5%;
+        }
+
+        .tbBody {
+            width: 25%;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            font-size: var(--rem-2);
+            padding: 1%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="qaDepartment-container">
+        <header>Feedback Notification</header>
+
+        <div class="tableManagement">
+            <div class="thead">
+                <div class="tbTitle">Author</div>
+                <div class="tbTitle">Description</div>
+                <div class="tbTitle">Time</div>
+                <div class="tbTitle">Status</div>
+            </div>
+
+            <div class="tbody">
+                <div class="tbBody">Author</div>
+                <div class="tbBody">Description</div>
+                <div class="tbBody">__:__:__</div>
+                <div class="tbBody">Status</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
