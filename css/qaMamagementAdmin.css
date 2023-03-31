@@ -1,0 +1,85 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.qaMaAdmin-container {
+    color: var(--licorice);
+    width: 98%;
+    margin: 1%;
+    user-select: none;
+}
+
+header {
+    width: 100%;
+    font-size: var(--rem-25);
+    font-weight: bold;
+    text-transform: capitalize;
+    text-decoration-line: underline;
+    align-items: center;
+    overflow: hidden;
+}
+
+.tableManagement {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1%;
+}
+
+.thead{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background: var(--light-blue-purple);
+    border-radius: 1.5rem;
+}
+
+.tbTitle {
+    width: 12.5%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--rem-2);
+    padding: 1%;
+}
+
+.tbody{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background: var(--light-blue-white);
+    border-radius: 1.5rem;
+    margin-top: 0.5%;
+}
+
+.tbBody {
+    width: 12.5%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--rem-2);
+    overflow: hidden;
+    padding: 1%;
+}
+
+@media screen and (max-width: 900px) {    
+    .thead, .tbody{
+        border-radius: 1rem;
+    }
+}
+
+@media screen and (max-width: 600px) {   
+    header {
+        font-size: var(--rem-2);
+    }
+    
+    .thead, .tbody{
+        border-radius: 1rem;
+    }
+    
+    .tbTitle, .tbBody {
+        font-size: var(--rem-15);
+    }
+}
