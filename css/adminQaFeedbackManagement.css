@@ -1,0 +1,171 @@
+@import "./root.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.qa-ad-fb-mn-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(var(--rem-15), 0.5vw, var(--rem-1));
+  overflow: hidden;
+}
+
+.title-contact-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.ad-qa-mn-title {
+  font-family: sans-serif;
+  font-size: clamp(
+    calc(var(--rem-1) + 1.5vw),
+    1vw,
+    calc(var(--rem-25) + 0.5vw)
+  );
+  font-weight: bold;
+  color: var(--dark-blue);
+  text-decoration: underline;
+}
+
+.ad-qa-mn-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(var(--rem-15), 0.5vw, var(--rem-1));
+}
+
+.filter-btn {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  padding: clamp(var(--rem-1), 1.5vw, var(--rem-1))
+    clamp(var(--rem-15), 1.75vw, var(--rem-15));
+  border-radius: clamp(
+    calc(var(--rem-1) + 1vw),
+    1.5vw,
+    calc(var(--rem-1) + 1.5vw)
+  );
+  border: 1px solid var(--dark-blue);
+  background-color: var(--white-color);
+  color: var(--dark-blue);
+
+  font-size: clamp(calc(var(--rem-1) + 0.25vw), 1.25vw, calc(var(--rem-15)));
+  font-family: sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.filter-btn > img {
+  /* position: absolute; */
+  left: 20%;
+  width: clamp(var(--rem-15), 1vw, var(--rem-2));
+  aspect-ratio: 1;
+}
+
+.filter-fb {
+  left: 0;
+  top: 0;
+  appearance: unset;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  opacity: 0;
+}
+
+.ad-qa-mn-download {
+  padding: clamp(var(--rem-1), 1.5vw, var(--rem-1));
+  border-radius: clamp(
+    calc(var(--rem-1) + 1vw),
+    1.5vw,
+    calc(var(--rem-1) + 1.5vw)
+  );
+  border: none;
+  background-color: var(--light-blue-gray);
+  color: var(--white-color);
+
+  font-size: clamp(calc(var(--rem-1) + 0.25vw), 1.25vw, calc(var(--rem-15)));
+  font-family: sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.qa-ad-scroll-table {
+  width: 100%;
+  height: 100%;
+  padding: clamp(var(--rem-1), 1.5vw, var(--rem-1));
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+.qa-ad-table-data {
+  width: fit-content;
+  height: 80%;
+  scrollbar-width: thin;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: start;
+  gap: clamp(var(--rem-15), 0.5vw, var(--rem-1));
+  padding: clamp(var(--rem-1), 1.5vw, var(--rem-1));
+}
+
+.qa-ad-fb-thead,
+.qa-ad-fb-tbody {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--dark-blue);
+  padding: clamp(var(--rem-1), 1.5vw, var(--rem-1));
+  font-size: clamp(calc(var(--rem-1) + 0.25vw), 1.25vw, calc(var(--rem-15)));
+  font-family: sans-serif;
+  white-space: nowrap;
+  border-radius: clamp(var(--rem-1), 1.5vw, var(--rem-1));
+  gap: clamp(var(--rem-15), 0.5vw, var(--rem-1));
+}
+
+.qa-ad-fb-thead {
+  background-color: var(--light-blue-purple);
+}
+
+.qa-ad-thead-cell,
+.qa-ad-tbody-cell {
+  /* border: 1px solid #000; */
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  height: 100%;
+  color: var(--dark-blue);
+  padding: clamp(var(--rem-1), 1.5vw, var(--rem-1));
+  font-size: clamp(calc(var(--rem-1) + 0.25vw), 1.25vw, calc(var(--rem-15)));
+  font-family: sans-serif;
+  white-space: nowrap;
+  cursor: default;
+  overflow: hidden;
+}
+
+.qa-ad-fb-tbody {
+  background-color: var(--light-blue-white);
+  border: 1px solid var(--light-blue-purple);
+}

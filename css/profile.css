@@ -1,0 +1,16 @@
+@import "./root.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.pr-form-input {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(var(--rem-1), 1.5vw, var(--rem-3));
+}
