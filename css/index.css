@@ -101,6 +101,7 @@
 .link-lists {
   position: relative;
   display: flex;
+  user-select: none;
 }
 
 .angle-down {

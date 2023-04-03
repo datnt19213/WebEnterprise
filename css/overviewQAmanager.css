@@ -7,7 +7,7 @@ body {
 
 .departmentName-container {
     background: var(--light-blue-white);
-    color: var(--licorice);
+    color: var(--dark-blue);
     border: 1px solid var(--light-blue-purple);
     border-radius: 2rem;
     width: 90%;
@@ -124,7 +124,6 @@ header {
     font-size: var(--rem-2);
     font-weight: bold;
     white-space: nowrap;
-    color: var(--dark-blue);
 }
 
 @media screen and (max-width: 900px) {

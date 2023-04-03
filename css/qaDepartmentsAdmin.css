@@ -5,7 +5,7 @@ body {
 }
 
 .qaDepartmentAdmin-container {
-    color: var(--licorice);
+    color: var(--dark-blue);
     width: 98%;
     margin: 1%;
     user-select: none;
