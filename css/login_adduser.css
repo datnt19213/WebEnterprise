@@ -79,7 +79,7 @@
     padding: 0px 15px;
     border: 1px solid var(--dark-blue);
     font-family: sans-serif;
-    margin-top: calc(var(--rem-3)*2);
+    margin-top: var(--rem-3);
     outline: none;
     border-radius: 50px;
     height: 45px;
@@ -126,6 +126,29 @@
     color: var(--white-color);
     transition: 0.2;
 }
+.checkbox-label {
+    display: flex;
+    flex-direction: row;
+    margin-top: var(--rem-2);
+    align-items: center;
+    padding-left: 20%;
+    width: 100%;
+    gap: clamp(var(--rem-1), 0.5vw, var(--rem-1));
+  }
+  
+  .check-box-terms {
+    width: clamp(calc(var(--rem-1) + 0.5vw), 1vw, calc(var(--rem-05) + 1vw));
+    aspect-ratio: 1;
+    border: 1px solid var(--dark-blue);
+  }
+  
+  .terms-check {
+    font-size: clamp(calc(var(--rem-1) + 0.25vw), 1.25vw, calc(var(--rem-15)));
+    font-family: sans-serif;
+    background-color: var(--white-color);
+    color: var(--dark-blue);
+    white-space: nowrap;
+  }
 
 @media screen and (max-width:900px){
     .form-left{
