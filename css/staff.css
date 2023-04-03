@@ -90,24 +90,3 @@
     margin: auto 0px;
     /* margin-left: calc(var(--rem-3)*5); */
 }
-
-.delete-edit{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
-    gap: 1.5vw;
-
-}
-.edit-icon{
-    width: calc(var(--rem-2) + 1vw)
-}
-.edit-icon > img{
-    width: 100%;
-}
-.delete-icon{
-    width: calc(var(--rem-2) + 1vw)
-}
-.delete-icon > img{
-    width: 100%;
-}
