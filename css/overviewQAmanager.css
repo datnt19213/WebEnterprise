@@ -1,8 +1,21 @@
-body {
-    margin: 0 25%;
+@import "./root.css";
+
+*{
+    margin: 0;
     padding: 0;
-    width: 50%;
+    box-sizing: border-box;
+}
+
+.departmentItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100svh;
+    overflow-y: scroll;
+    padding: clamp(calc(var(--rem-15) + 0.5vw), 1.5vw, calc(var(--rem-2) + 1.5vw)) clamp(calc(var(--rem-3) + 0.5vw), 15vw, calc(var(--rem-3) + 1vw));
     font-family: sans-serif;
+    gap: 5%;
 }
 
 .departmentName-container {
@@ -10,20 +23,26 @@ body {
     color: var(--dark-blue);
     border: 1px solid var(--light-blue-purple);
     border-radius: 2rem;
-    width: 90%;
-    margin: 5%;
+    width: 100%;
+    height: 100%;
     box-shadow: 0 2px 10px var(--light-blue-purple);
     user-select: none;
     cursor: pointer;
+    max-width: 50%;
 }
 
 .departmentName-container:hover {
     transform: scale(1.01);
+    transition: 0.15s;
+    -webkit-transition: 0.15s;
+    -moz-transition: 0.15s;
+    -ms-transition: 0.15s;
+    -o-transition: 0.15s;
 }
 
 header {
     width: 94%;
-    font-size: var(--rem-2);
+    font-size: clamp(var(--rem-15), 2vw, var(--rem-25));
     font-weight: bold;
     text-transform: uppercase;
     text-decoration-line: underline;
@@ -40,6 +59,10 @@ header {
     display: flex;
     flex-direction: column;
     margin: 0 3%;
+}
+
+.row1, .row3 {
+    padding: 3% 0;
 }
 
 .row1 {
@@ -60,18 +83,18 @@ header {
 .row1-col1-title,
 .row1-col2-title,
 .row1-col3-title {
-    font-size: var(--rem-15);
+    font-size: clamp(var(--rem-1), 2vw, var(--rem-15));
     width: 100%;
-    white-space: nowrap;
+    padding: 3% 0;
 }
 
 .row1-col1-value,
 .row1-col2-value,
 .row1-col3-value {
-    font-size: var(--rem-3);
+    font-size: clamp(var(--rem-2), 2vw, var(--rem-3));
     font-weight: bold;
-    color: var(--dark-blue);
     white-space: nowrap;
+    padding: 10% 0;
     width: 100%;
 }
 
@@ -80,20 +103,19 @@ header {
     flex-direction: row;
     justify-content: justify;
     align-items: center;
+    gap: 3%;
     width: 100%;
 }
 
 .row2-title {
-    font-size: var(--rem-15);
+    font-size: clamp(var(--rem-1), 2vw, var(--rem-15));
     white-space: nowrap;
-    margin-right: 3%;
 }
 
 .row2-value {
-    font-size: var(--rem-2);
+    font-size: clamp(var(--rem-15), 2vw, var(--rem-25));
     font-weight: bold;
     white-space: nowrap;
-    color: var(--dark-blue);
 }
 
 .row3 {
@@ -110,48 +132,41 @@ header {
     flex-direction: row;
     text-align: justify;
     align-items: center;
+    gap: 3%;
 }
 
 .row3-col1-title,
 .row3-col2-title {
-    font-size: var(--rem-15);
+    font-size: clamp(var(--rem-1), 2vw, var(--rem-15));
     white-space: nowrap;
-    margin-right: 5%;
+    padding: 3% 0;
 }
 
 .row3-col1-value,
 .row3-col2-value {
-    font-size: var(--rem-2);
+    font-size: clamp(var(--rem-15), 2vw, var(--rem-25));
+    padding: 3% 0;
     font-weight: bold;
     white-space: nowrap;
 }
 
-@media screen and (max-width: 900px) {
-    body {
-        margin: 0 15%;
-        width: 70%;
+@media screen and (max-width: 1150px){
+    .row3 {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 0;
+    }
+
+    .row3-col1-title,
+    .row3-col2-title,
+    .row3-col1-value,
+    .row3-col2-value {
+        padding: 0;
     }
 }
 
 @media screen and (max-width: 600px){
-    body {
-        margin: 0 5%;
-        width: 90%;
-    }
-    
-    header {
-        font-size: var(--rem-15);
-    }
-    
-    .row1-col1-value,
-    .row1-col2-value,
-    .row1-col3-value {
-        font-size: var(--rem-25);
-    }
-    
-    .col1,
-    .col2 {
-        display: flex;
-        flex-direction: column;
+    .departmentName-container{
+        max-width: 100%;
     }
 }
