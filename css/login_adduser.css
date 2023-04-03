@@ -62,7 +62,7 @@
 .title-right{
     text-align: center;
     color: var(--dark-blue);
-    font-size: calc(var(--rem-3)*2);
+    font-size: clamp(var(--rem-3), 3vw, calc(var(--rem-3)*2));
     font-weight: bold;
     font-family: sans-serif;
 }
@@ -75,7 +75,7 @@
 }
 
 .input-username{
-    font-size: var(--rem-2);
+    font-size: clamp(var(--rem-15), 1.5vw, var(--rem-2));
     padding: 0px 15px;
     border: 1px solid var(--dark-blue);
     font-family: sans-serif;
@@ -86,7 +86,7 @@
     width: 70%;
 }
 .input-password{
-    font-size: var(--rem-2);
+    font-size:  clamp(var(--rem-15), 1.5vw, var(--rem-2));
     padding: 0px 15px;
     font-family: sans-serif;
     border: 1px solid var(--dark-blue);
@@ -109,7 +109,7 @@
 }
 
 .login-btn{
-    font-size: var(--rem-2);
+    font-size: clamp(var(--rem-15), 1.5vw, var(--rem-2));
     font-family: sans-serif;
     margin-top: calc(var(--rem-3)*2);
     border: 1px solid var(--dark-blue);
