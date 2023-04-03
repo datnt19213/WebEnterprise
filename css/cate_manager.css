@@ -22,7 +22,7 @@
 }
 .title-cate{
     color: var(--dark-blue);
-    font-size: var(--rem-25);
+    font-size: clamp(var(--rem-2), 2vw, var(--rem-25));
     font-weight: bold;
     align-items: center;
     font-family: sans-serif;
@@ -30,13 +30,13 @@
     margin-left: var(--rem-2);
 }
 .add-btn{
-    font-size: var(--rem-2);
+    font-size: clamp(var(--rem-15), 1.5vw, var(--rem-2));
     font-family: sans-serif;
     /* margin-top: var(--rem-2); */
     /* border: 1px solid var(--white-color); */
     border: none;
     border-radius: 15px;
-    height: 50px;
+    height: 40px;
     width: 150px;
     color: var(--white-color);
     background-color: var(--cream-blue);
@@ -105,13 +105,13 @@
 
 }
 .edit-icon{
-    width: calc(var(--rem-2) + 1vw)
+    width: var(--rem-3)
 }
 .edit-icon > img{
     width: 100%;
 }
 .delete-icon{
-    width: calc(var(--rem-2) + 1vw)
+    width: var(--rem-3)
 }
 .delete-icon > img{
     width: 100%;
