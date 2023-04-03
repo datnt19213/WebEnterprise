@@ -162,6 +162,10 @@
   font-family: sans-serif;
   white-space: nowrap;
   cursor: default;
+  /* overflow: hidden; */
+}
+
+.qa-ad-tbody-cell {
   overflow: hidden;
 }
 
