@@ -8,8 +8,7 @@
   <title>Feedback Create</title>
   <link rel="stylesheet" href="../css/feedbackCreate.css" />
   <link rel="stylesheet" href="../css/profile.css" />
-  <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -20,8 +19,7 @@
           <p class="fb-create-tittle">Feedback Create</p>
         </div>
         <div class="wrapper-textarea">
-          <textarea class="textarea-feedback-content" name="" id="" cols="30" rows="18" maxlength="10000"
-            placeholder="Feedback Content"></textarea>
+          <textarea class="textarea-feedback-content" name="" id="" cols="30" rows="18" maxlength="10000" placeholder="Feedback Content"></textarea>
         </div>
       </div>
       <div class="fb-file-time-submit">
