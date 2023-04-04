@@ -1,10 +1,13 @@
-body {
+@import './root.css';
+
+* {
     padding: 0;
     margin: 0;
-    font-family: sans-serif;
+    box-sizing: border-box;
 }
 
 .qaDepartmentqaMa-container {
+    font-family: sans-serif;
     color: var(--dark-blue);
     width: 98%;
     margin: 1%;
@@ -39,7 +42,7 @@ body {
     cursor: pointer;
 }
 
-p{
+.btnFilter > p{
     padding: 0.1rem 2rem;
     font-size: var(--rem-2);
 }
@@ -101,7 +104,7 @@ p{
         border-radius: 1.3rem;
     }
     
-    p{
+    .btnFilter > p{
         padding: 0.1rem 1rem;
         font-size: var(--rem-15);
     }
@@ -125,7 +128,7 @@ p{
         border-radius: 1rem;
     }
     
-    p{
+    .btnFilter > p{
         padding: 0.1rem 0.5rem;
         font-size: var(--rem-1);
     }
