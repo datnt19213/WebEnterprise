@@ -419,7 +419,7 @@
           <form action="" class="comment-form" method="post">
             <label for="" class="checkbox-label-post">
               <input type="checkbox" class="check-box-terms" name="" value="check box" />
-              <p class="terms-check">Post As Anonymous</p>
+              <p class="terms-check">Comment As Anonymous</p>
             </label>
             <div class="cmt-box">
               <input type="text" placeholder="Comment" class="comment-input" />

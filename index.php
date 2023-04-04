@@ -121,8 +121,6 @@
 
       ?>
 
-
-
     </div>
     <div class="footer">
       <p class="ft-copyright">Copyright&copy;2023 by Uni.Feedback</p>
