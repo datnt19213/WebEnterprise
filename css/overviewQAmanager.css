@@ -40,7 +40,7 @@
     -o-transition: 0.15s;
 }
 
-header {
+.header {
     width: 94%;
     font-size: clamp(var(--rem-15), 2vw, var(--rem-25));
     font-weight: bold;
