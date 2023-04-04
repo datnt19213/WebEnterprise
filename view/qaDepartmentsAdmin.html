@@ -5,58 +5,72 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/root.css">
-    <link rel="stylesheet" href="../css/qaDepartmentsAdmin.css">
+    <!-- <link rel="stylesheet" href="../css/root.css">
+    <link rel="stylesheet" href="../css/qaDepartmentsAdmin.css"> -->
     <title>QA Departments</title>
+    <link rel="stylesheet" href="../css/feedbackCreate.css" />
+    <link rel="stylesheet" href="../css/adminQaFeedbackManagement.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.js"
+        integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div class="qaDepartmentAdmin-container">
-        <header>QA Departments</header>
-
-        <div class="tableManagement">
-            <div class="thead">
-                <div class="tbTitle">Name</div>
-                <div class="tbTitle">DoB</div>
-                <div class="tbTitle">Tel</div>
-                <div class="tbTitle">Address</div>
-                <div class="tbTitle">Email</div>
-                <div class="tbTitle">Position</div>
-                <div class="tbTitle">Department</div>
-                <div class="tbTitle">Description</div>
+    <div class="qa-ad-fb-mn-container">
+        <div class="title-contact-btn">
+            <p class="ad-qa-mn-title">QA Departments</p>
+            <div class="ad-qa-mn-btn">
+                <div class="filter-btn">
+                    Filter&nbsp;
+                    <img src="../image/filter.png" alt="filter-img" />
+                    <select name="" id="" class="option-list-cate filter-fb" required>
+                        <option value="0" selected>All</option>
+                        <option value="1">Most Like</option>
+                        <option value="2">Most Dislike</option>
+                        <option value="3">Most Comment</option>
+                        <option value="4">Newest</option>
+                        <option value="5">Ended</option>
+                    </select>
+                </div>
             </div>
-
-            <div class="tbody">
-                <div class="tbBody">__/__/____</div>
-                <div class="tbBody">Name</div>
-                <div class="tbBody">0123456789</div>
-                <div class="tbBody">a/b/c</div>
-                <div class="tbBody">abc@gmail.com</div>
-                <div class="tbBody">QA Management</div>
-                <div class="tbBody">QA Management</div>
-                <div class="tbBody">abcdxyz...</div>
-            </div>
-
-            <div class="tbody">
-                <div class="tbBody">__/__/____</div>
-                <div class="tbBody">Name</div>
-                <div class="tbBody">0123456789</div>
-                <div class="tbBody">a/b/c</div>
-                <div class="tbBody">abc@gmail.com</div>
-                <div class="tbBody">QA Management</div>
-                <div class="tbBody">QA Management</div>
-                <div class="tbBody">abcdxyz...</div>
-            </div>
-
-            <div class="tbody">
-                <div class="tbBody">__/__/____</div>
-                <div class="tbBody">Name</div>
-                <div class="tbBody">0123456789</div>
-                <div class="tbBody">a/b/c</div>
-                <div class="tbBody">abc@gmail.com</div>
-                <div class="tbBody">QA Management</div>
-                <div class="tbBody">QA Management</div>
-                <div class="tbBody">abcdxyz...</div>
+        </div>
+        <div class="qa-ad-scroll-table">
+            <div class="qa-ad-table-data">
+                <div class="qa-ad-fb-thead">
+                    <div class="qa-ad-thead-cell">Name</div>
+                    <div class="qa-ad-thead-cell">DoB</div>
+                    <div class="qa-ad-thead-cell">Tel</div>
+                    <div class="qa-ad-thead-cell">Address</div>
+                    <div class="qa-ad-thead-cell">Email</div>
+                    <div class="qa-ad-thead-cell">Position</div>
+                    <div class="qa-ad-thead-cell">Department</div>
+                    <div class="qa-ad-thead-cell">Description</div>
+                </div>
+                <div class="qa-ad-fb-tbody">
+                    <div class="qa-ad-tbody-cell" title="Author">
+                        <p>__/__/____</p>
+                    </div>
+                    <div class="qa-ad-tbody-cell" title="Content">
+                        <p>Name</p>
+                    </div>
+                    <div class="qa-ad-tbody-cell" title="Category">
+                        <p>0123456789</p>
+                    </div>
+                    <div class="qa-ad-tbody-cell" title="Document">
+                        <p>a/b/c</p>
+                    </div>
+                    <div class="qa-ad-tbody-cell" title="Deadline">
+                        <p>abc@gmail.com</p>
+                    </div>
+                    <div class="qa-ad-tbody-cell" title="Like">
+                        <p>QA Management</p>
+                    </div>
+                    <div class="qa-ad-tbody-cell" title="Dislike">
+                        <p>QA Management</p>
+                    </div>
+                    <div class="qa-ad-tbody-cell" title="Comment">
+                        <p>abcdxyz...</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

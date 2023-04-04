@@ -1,17 +1,18 @@
-body {
-    padding: 0;
+*{
     margin: 0;
-    font-family: sans-serif;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .qaMaAdmin-container {
+    font-family: sans-serif;
     color: var(--dark-blue);
     width: 98%;
     margin: 1%;
     user-select: none;
 }
 
-header {
+.header {
     width: 100%;
     font-size: var(--rem-25);
     font-weight: bold;

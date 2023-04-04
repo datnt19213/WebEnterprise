@@ -1,12 +1,13 @@
 @import './root.css';
 
-body {
+* {
     padding: 0;
     margin: 0;
-    font-family: sans-serif;
+    box-sizing: border-box;
 }
 
 .qaDepartmentAdmin-container {
+    font-family: sans-serif;
     color: var(--dark-blue);
     width: 98%;
     margin: 1%;
