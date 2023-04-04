@@ -238,6 +238,7 @@
 .fb-document:hover {
   background-color: var(--dark-blue);
   color: var(--white-color);
+  transition: 0.15s;
 }
 
 .fb-content-para {
@@ -411,24 +412,50 @@
 .post-comment {
   width: 100%;
   /* border: 1px solid #000; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .comment-form {
+  width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   padding: clamp(
     calc(var(--rem-05) + 0.25vw),
     0.5vw,
     calc(var(--rem-05) + 1vw)
   );
-  position: relative;
 }
+
+.checkbox-label-post {
+  display: flex;
+  flex-direction: row;
+  margin-top: var(--rem-2);
+  justify-content: center;
+  align-items: center;
+  align-items: center;
+  width: 100%;
+  padding: 0 0 clamp(var(--rem-1), 0.5vw, var(--rem-1)) 0;
+  gap: clamp(var(--rem-1), 0.5vw, var(--rem-1));
+}
+
+.cmt-box {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .comment-input {
   width: 100%;
   height: clamp(calc(var(--rem-3) + 1.5vw), 1.8vw, calc(var(--rem-3) + 2.3vw));
-  margin-bottom: clamp(calc(var(--rem-05)), 0.5vw, calc(var(--rem-05) + 1vw));
+  /* margin-bottom: clamp(calc(var(--rem-05)), 0.5vw, calc(var(--rem-05) + 1vw)); */
   border-radius: clamp(
     calc(var(--rem-2) + 2vw),
     1.8vw,
@@ -442,7 +469,7 @@
 }
 
 .fb-send-comment {
-  height: clamp(calc(var(--rem-3) + 1.5vw), 1.8vw, calc(var(--rem-3) + 2.3vw));
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -452,7 +479,7 @@
   aspect-ratio: 1;
   background-color: transparent;
   border: none;
-  margin: clamp(calc(var(--rem-05) + 0.25vw), 0.5vw, calc(var(--rem-05) + 1vw));
+  /* margin: clamp(calc(var(--rem-05) + 0.25vw), 0.5vw, calc(var(--rem-05) + 1vw)); */
   cursor: pointer;
 }
 
@@ -461,7 +488,10 @@
 }
 
 .send-comment {
-  width: clamp(calc(var(--rem-15) + 0.5vw), 1.3vw, calc(var(--rem-15) + 1.8vw));
+  height: 50%;
+  width: 50%;
+  aspect-ratio: 1;
+  /* width: clamp(calc(var(--rem-15) + 0.5vw), 1.3vw, calc(var(--rem-15) + 1.8vw)); */
 }
 
 @media screen and (max-width: 900px) {
