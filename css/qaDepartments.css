@@ -73,7 +73,7 @@
 }
 
 @media screen and (max-width: 600px) {   
-    header {
+    .header {
         font-size: var(--rem-2);
     }
     
