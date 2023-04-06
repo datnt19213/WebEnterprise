@@ -59,7 +59,8 @@
 
         if(mysqli_num_rows($res) == 1){				
           $_SESSION["us"] = $us;
-          $_SESSION["admin"] = $row["state"];
+          $_SESSION["role"] = $row["state_code"];
+          $_SESSION["fu"]=$row['fullname'];
           echo "<script> alert('Login successfully')</script>";
           header("Location: ../index.php?");
 
