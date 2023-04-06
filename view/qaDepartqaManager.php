@@ -7,18 +7,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/root.css">
     <link rel="stylesheet" href="../css/qaDepartqaManager.css">
-    <title>QA Departments QA Management</title>
+    <link rel="stylesheet" href="../css/feedbackCreate.css" />
+    <link rel="stylesheet" href="../css/adminQaFeedbackManagement.css" />
 </head>
 
 <body>
     <div class="qaDepartmentqaMa-container">
         <div class="title">
-            <header class="header">QA Departments Management</header>
+            <header class="header">QA Departments QA Management</header>
 
-            <div class="btnFilter">
-                <p>Filters</p>
-                <img src="../image/filter.png">
-            </div>
+            <div class="filter-btn">
+            Filter&nbsp;
+            <img src="../image/filter.png" alt="filter-img" />
+            <select name="" id="" class="option-list-cate filter-fb" required>
+              <option value="0" selected>All</option>
+              <option value="1">Most Like</option>
+              <option value="2">Most Dislike</option>
+              <option value="3">Most Comment</option>
+              <option value="4">Newest</option>
+              <option value="5">Ended</option>
+            </select>
+          </div>
         </div>
 
         <div class="tableManagement">

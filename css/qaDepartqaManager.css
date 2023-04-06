@@ -31,7 +31,7 @@
     overflow: hidden;
 }
 
-.btnFilter {
+/* .btnFilter {
     border: 1px solid var(--licorice);
     display: flex;
     flex-direction: row;
@@ -52,7 +52,7 @@
     height: 3rem;
     padding: 0.1rem;
     border: none;
-}
+} */
 
 .tableManagement {
     display: flex;
@@ -100,7 +100,7 @@
 }
 
 @media screen and (max-width: 900px) {    
-    .btnFilter {
+    /* .btnFilter {
         border-radius: 1.3rem;
     }
     
@@ -112,7 +112,7 @@
     .btnFilter > img{
         width: 2rem;
         height: 2rem;
-    }
+    } */
     
     .thead, .tbody{
         border-radius: 1rem;
@@ -120,7 +120,7 @@
 }
 
 @media screen and (max-width: 600px) {   
-    header {
+    /* header {
         font-size: var(--rem-15);
     }
 
@@ -136,7 +136,7 @@
     .btnFilter > img{
         width: 1.5rem;
         height: 1.5rem;
-    }
+    } */
     
     .thead, .tbody{
         border-radius: 1rem;

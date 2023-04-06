@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" href="../css/root.css">
     <link rel="stylesheet" href="../css/qaDepartmentsAdmin.css"> -->
-    <title>QA Departments</title>
     <link rel="stylesheet" href="../css/feedbackCreate.css" />
     <link rel="stylesheet" href="../css/adminQaFeedbackManagement.css" />
     <script src="https://code.jquery.com/jquery-3.6.4.js"

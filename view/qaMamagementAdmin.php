@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" href="../css/root.css">
     <link rel="stylesheet" href="../css/qaManagementadmin.css"> -->
-    <title>QA Departments</title>
     <link rel="stylesheet" href="../css/feedbackCreate.css" />
     <link rel="stylesheet" href="../css/adminQaFeedbackManagement.css" />
     <script src="https://code.jquery.com/jquery-3.6.4.js"
@@ -17,7 +16,7 @@
 <body>
     <div class="qa-ad-fb-mn-container">
         <div class="title-contact-btn">
-            <p class="ad-qa-mn-title">QA Management</p>
+            <p class="ad-qa-mn-title">QA Management Administrator</p>
         </div>
         <div class="qa-ad-scroll-table">
             <div class="qa-ad-table-data">
