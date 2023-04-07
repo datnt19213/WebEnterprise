@@ -14,6 +14,7 @@
   justify-content: center;
   align-items: center;
   margin: 0px auto;
+  padding-top: 3%;
 }
 .fb-view-container {
   min-width: 60%;
@@ -496,7 +497,7 @@
 
 @media screen and (max-width: 900px) {
   .home-container {
-    padding: 0px min(var(--rem-3), var(--rem-1));
+    padding: 3% min(var(--rem-3), var(--rem-1));
   }
   .fb-view-container {
     display: flex;

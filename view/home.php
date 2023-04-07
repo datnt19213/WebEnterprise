@@ -1,3 +1,8 @@
+<?php
+include_once("./data/connection.php");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,8 +20,10 @@
 <body>
   <div class="home-container">
     <div class="fb-view-container">
+      <!-- feedback box -->
       <div class="fb-list">
         <div class="fb-list-scroll">
+
           <form class="fb-list-form-content fb-list-form-content-0" enctype="multipart/form-data" action="" method="post" data-="1">
             <div class="fb-header-interact">
               <div class="fb-user-info">
@@ -85,217 +92,16 @@
               <p class="show-less-content show-less-content-0">Show less</p>
             </div>
           </form>
-          <form class="fb-list-form-content fb-list-form-content-1" enctype="multipart/form-data" action="" method="post" data-="2">
-            <div class="fb-header-interact">
-              <div class="fb-user-info">
-                <div class="fb-user-data">
-                  <img src="./image/Anonymous.png" alt="avatar" class="avt-user-push" />
-                </div>
-                <div class="end-date-username">
-                  <p class="fb-user-name">User name</p>
-                  <div class="fb-end-date-data">
-                    <p class="date-deadline">Ended on&nbsp;</p>
-                    <p class="date-deadline">11/11/1111</p>
-                  </div>
-                </div>
-              </div>
-              <div class="fb-emotion-interact">
-                <!--Like press-->
-                <button type="submit" class="fb-like">
-                  <div class="icon-outline">
-                    <img src="./image/like.png" alt="like ico" class="ico-like" />
-                  </div>
-                  <p class="fb-like-label">Like</p>
-                </button>
 
-                <!--Dislike press-->
-                <button type="submit" class="fb-dislike">
-                  <div class="icon-outline">
-                    <img src="./image/like.png" alt="dislike ico" class="ico-dislike" />
-                  </div>
-                  <p class="fb-dislike-label">Dislike</p>
-                </button>
-
-                <!--Comment press-->
-                <button type="submit" class="fb-cmt">
-                  <div class="icon-outline">
-                    <img src="./image/comment.png" alt="comment ico" class="ico-like" />
-                  </div>
-                  <p class="fb-cmt-label">Comment</p>
-                </button>
-              </div>
-            </div>
-            <div class="fb-content-data">
-              <div class="btn-view-doc">
-                <a href="youtube.com" class="fb-document" target="_blank">
-                  View Document
-                </a>
-              </div>
-              <div class="fb-content-para fb-content-para-1">
-                <pre class="fb-text-paragraph">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis nemo optio beatae, accusamus 
-                    voluptate quis hic accusantium at fugit cumque, minima quo. Eligendi molestias perspiciatis veniam sit 
-                    possimus deleniti sint!
-                    Natus dolorum reprehenderit modi minima, repellendus dolores voluptas sint ipsum ratione ullam magni. 
-                    Quae incidunt soluta repellat deleniti fuga odio, quidem totam aliquam vel! Cum quod voluptate et iste dolorum!
-                        
-                                Voluptas maxime culpa quas, cupiditate commodi perspiciatis a iste autem atque veritatis molestiae? 
-                                Minima atque rem voluptate dolor accusamus, possimus odit mollitia quod quia voluptates aspernatur 
-                                quae quos est modi.
-                    Reprehenderit perferendis itaque corporis dolorum, praesentium pariatur cum modi veritatis earum adipisci tempore 
-                    temporibus eum nisi nihil blanditiis ex inventore aperiam consequuntur, veniam eius necessitatibus ipsa voluptate 
-                    et! Ipsam, similique?
-                    Ratione aliquid, facilis veritatis perspiciatis quas labore ut neque vero doloribus itaque earum doloremque fugit 
-                    recusandae nemo nisi eveniet id cum. Eius voluptatibus, minus repellat ut soluta sunt quod mollitia.
-                  </pre>
-              </div>
-              <p class="show-more-content show-more-content-1">Show more</p>
-              <p class="show-less-content show-less-content-1">Show less</p>
-            </div>
-          </form>
-          <form class="fb-list-form-content" enctype="multipart/form-data" action="" method="post" data-="3">
-            <div class="fb-header-interact">
-              <div class="fb-user-info">
-                <div class="fb-user-data">
-                  <img src="./image/Anonymous.png" alt="avatar" class="avt-user-push" />
-                </div>
-                <div class="end-date-username">
-                  <p class="fb-user-name">User name</p>
-                  <div class="fb-end-date-data">
-                    <p class="date-deadline">Ended on&nbsp;</p>
-                    <p class="date-deadline">11/11/1111</p>
-                  </div>
-                </div>
-              </div>
-              <div class="fb-emotion-interact">
-                <!--Like press-->
-                <button type="submit" class="fb-like">
-                  <div class="icon-outline">
-                    <img src="./image/like.png" alt="like ico" class="ico-like" />
-                  </div>
-                  <p class="fb-like-label">Like</p>
-                </button>
-
-                <!--Dislike press-->
-                <button type="submit" class="fb-dislike">
-                  <div class="icon-outline">
-                    <img src="./image/like.png" alt="dislike ico" class="ico-dislike" />
-                  </div>
-                  <p class="fb-dislike-label">Dislike</p>
-                </button>
-
-                <!--Comment press-->
-                <button type="submit" class="fb-cmt">
-                  <div class="icon-outline">
-                    <img src="./image/comment.png" alt="comment ico" class="ico-like" />
-                  </div>
-                  <p class="fb-cmt-label">Comment</p>
-                </button>
-              </div>
-            </div>
-            <div class="fb-content-data">
-              <div class="btn-view-doc">
-                <a href="youtube.com" class="fb-document" target="_blank">
-                  View Document
-                </a>
-              </div>
-              <div class="fb-content-para">
-                <pre class="fb-text-paragraph">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis nemo optio beatae, accusamus 
-                    voluptate quis hic accusantium at fugit cumque, minima quo. Eligendi molestias perspiciatis veniam sit 
-                    possimus deleniti sint!
-                    Natus dolorum reprehenderit modi minima, repellendus dolores voluptas sint ipsum ratione ullam magni. 
-                    Quae incidunt soluta repellat deleniti fuga odio, quidem totam aliquam vel! Cum quod voluptate et iste dolorum!
-                        
-                                Voluptas maxime culpa quas, cupiditate commodi perspiciatis a iste autem atque veritatis molestiae? 
-                                Minima atque rem voluptate dolor accusamus, possimus odit mollitia quod quia voluptates aspernatur 
-                                quae quos est modi.
-                    Reprehenderit perferendis itaque corporis dolorum, praesentium pariatur cum modi veritatis earum adipisci tempore 
-                    temporibus eum nisi nihil blanditiis ex inventore aperiam consequuntur, veniam eius necessitatibus ipsa voluptate 
-                    et! Ipsam, similique?
-                    Ratione aliquid, facilis veritatis perspiciatis quas labore ut neque vero doloribus itaque earum doloremque fugit 
-                    recusandae nemo nisi eveniet id cum. Eius voluptatibus, minus repellat ut soluta sunt quod mollitia.
-                  </pre>
-              </div>
-              <p class="show-more-content">Show more</p>
-              <p class="show-less-content">Show less</p>
-            </div>
-          </form>
-          <form class="fb-list-form-content" enctype="multipart/form-data" action="" method="post" data-="4">
-            <div class="fb-header-interact">
-              <div class="fb-user-info">
-                <div class="fb-user-data">
-                  <img src="./image/Anonymous.png" alt="avatar" class="avt-user-push" />
-                </div>
-                <div class="end-date-username">
-                  <p class="fb-user-name">User name</p>
-                  <div class="fb-end-date-data">
-                    <p class="ended-date-deadline">Ended on&nbsp;</p>
-                    <p class="ended-date-deadline">11/11/1111</p>
-                  </div>
-                </div>
-              </div>
-              <div class="fb-emotion-interact">
-                <!--Like press-->
-                <button type="submit" class="fb-like">
-                  <div class="icon-outline">
-                    <img src="./image/like.png" alt="like ico" class="ico-like" />
-                  </div>
-                  <p class="fb-like-label">Like</p>
-                </button>
-
-                <!--Dislike press-->
-                <button type="submit" class="fb-dislike">
-                  <div class="icon-outline">
-                    <img src="./image/like.png" alt="dislike ico" class="ico-dislike" />
-                  </div>
-                  <p class="fb-dislike-label">Dislike</p>
-                </button>
-
-                <!--Comment press-->
-                <button type="submit" class="fb-cmt">
-                  <div class="icon-outline">
-                    <img src="./image/comment.png" alt="comment ico" class="ico-like" />
-                  </div>
-                  <p class="fb-cmt-label">Comment</p>
-                </button>
-              </div>
-            </div>
-            <div class="fb-content-data">
-              <div class="btn-view-doc">
-                <a href="youtube.com" class="fb-document" target="_blank">
-                  View Document
-                </a>
-              </div>
-              <div class="fb-content-para">
-                <pre class="fb-text-paragraph">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis nemo optio beatae, accusamus 
-                    voluptate quis hic accusantium at fugit cumque, minima quo. Eligendi molestias perspiciatis veniam sit 
-                    possimus deleniti sint!
-                    Natus dolorum reprehenderit modi minima, repellendus dolores voluptas sint ipsum ratione ullam magni. 
-                    Quae incidunt soluta repellat deleniti fuga odio, quidem totam aliquam vel! Cum quod voluptate et iste dolorum!
-                        
-                                Voluptas maxime culpa quas, cupiditate commodi perspiciatis a iste autem atque veritatis molestiae? 
-                                Minima atque rem voluptate dolor accusamus, possimus odit mollitia quod quia voluptates aspernatur 
-                                quae quos est modi.
-                    Reprehenderit perferendis itaque corporis dolorum, praesentium pariatur cum modi veritatis earum adipisci tempore 
-                    temporibus eum nisi nihil blanditiis ex inventore aperiam consequuntur, veniam eius necessitatibus ipsa voluptate 
-                    et! Ipsam, similique?
-                    Ratione aliquid, facilis veritatis perspiciatis quas labore ut neque vero doloribus itaque earum doloremque fugit 
-                    recusandae nemo nisi eveniet id cum. Eius voluptatibus, minus repellat ut soluta sunt quod mollitia.
-                  </pre>
-              </div>
-              <p class="show-more-content">Show more</p>
-              <p class="show-less-content">Show less</p>
-            </div>
-          </form>
         </div>
       </div>
+      <!-- comment box -->
       <div class="fb-comment">
         <div class="hide-cmt">
           <p>Hide</p>
         </div>
         <div class="list-comment">
+          <!-- comment list -->
           <div class="comment-row">
             <div class="cmt-avt">
               <img src="./image/Anonymous.png" alt="" class="avt-comment" />
@@ -304,116 +110,7 @@
               <pre class="cmt-text">123456abcxyz</pre>
             </div>
           </div>
-          <div class="comment-row">
-            <div class="cmt-avt">
-              <img src="./image/Anonymous.png" alt="" class="avt-comment" />
-            </div>
-            <div class="cmt-content">
-              <pre class="cmt-text">
-                  123456abcaaaaaaa aaaaa aaaa aaaaaa aaaaaaaxyz
-                </pre>
-            </div>
-          </div>
-          <div class="comment-row">
-            <div class="cmt-avt">
-              <img src="./image/Anonymous.png" alt="" class="avt-comment" />
-            </div>
-            <div class="cmt-content">
-              <pre class="cmt-text">
-                  123456aaaaaaaaaaaaaaa aaaaaaasssssssssssss ssssssssssssssssssssssss ssssssssssssssssssssss ssssssssssssssssss sssssssss sssssssssssssbcxyz
-                </pre>
-            </div>
-          </div>
-          <div class="comment-row">
-            <div class="cmt-avt">
-              <img src="./image/Anonymous.png" alt="" class="avt-comment" />
-            </div>
-            <div class="cmt-content">
-              <pre class="cmt-text">
-                  123456aaaaaaaaaaaaaaa aaaaaaasssssssssssss ssssssssssssssssssssssss ssssssssssssssssssss ssssssssssssssssssss sssssssss sssssssssssssbcxyz
-                </pre>
-            </div>
-          </div>
-          <div class="comment-row">
-            <div class="cmt-avt">
-              <img src="./image/Anonymous.png" alt="" class="avt-comment" />
-            </div>
-            <div class="cmt-content">
-              <pre class="cmt-text">
-                  123456aaaaaaaaaaaaaaa aaaaaaasssssssssssss ssssssssssssssssssssssss sssssssssssssssssssss sssssssssssssssssss sssssssss sssssssssssssbcxyz
-                </pre>
-            </div>
-          </div>
-          <div class="comment-row">
-            <div class="cmt-avt">
-              <img src="./image/Anonymous.png" alt="" class="avt-comment" />
-            </div>
-            <div class="cmt-content">
-              <pre class="cmt-text">
-                  123456aaaaaaaaaaaaaaa aaaaaaasssssssssssss ssssssssssssssssssssssss sssssssssssssss sssssssssssssssssssssssss sssssssss sssssssssssssbcxyz
-                </pre>
-            </div>
-          </div>
-          <div class="comment-row">
-            <div class="cmt-avt">
-              <img src="./image/Anonymous.png" alt="" class="avt-comment" />
-            </div>
-            <div class="cmt-content">
-              <pre class="cmt-text">
-                  123456aaaaaaaaaaaaaaa aaaaaaasssssssssssss ssssssssssssssssssssssss sssssssssssssssss sssssssssssssssssssssss sssssssss sssssssssssssbcxyz
-                </pre>
-            </div>
-          </div>
-          <div class="comment-row">
-            <div class="cmt-avt">
-              <img src="./image/Anonymous.png" alt="" class="avt-comment" />
-            </div>
-            <div class="cmt-content">
-              <pre class="cmt-text">
-                  123456aaaaaaaaaaaaaaa aaaaaaasssssssssssss ssssssssssssssssssssssss ssssssssssssssss ssssssssssssssssssssssss sssssssss sssssssssssssbcxyz
-                </pre>
-            </div>
-          </div>
-          <div class="comment-row">
-            <div class="cmt-avt">
-              <img src="./image/Anonymous.png" alt="" class="avt-comment" />
-            </div>
-            <div class="cmt-content">
-              <pre class="cmt-text">
-                  123456aaaaaaaaaaaaaaa aaaaaaasssssssssssss ssssssssssssssssssssssss ssssssssssssssssssss ssssssssssssssssssss sssssssss sssssssssssssbcxyz
-                </pre>
-            </div>
-          </div>
-          <div class="comment-row">
-            <div class="cmt-avt">
-              <img src="./image/Anonymous.png" alt="" class="avt-comment" />
-            </div>
-            <div class="cmt-content">
-              <pre class="cmt-text">
-                  123456aaaaaaaaaaaaaaa aaaaaaasssssssssssss ssssssssssssssssssssssss sssssssssssssssssss sssssssssssssssssssss sssssssss sssssssssssssbcxyz
-                </pre>
-            </div>
-          </div>
-          <div class="comment-row">
-            <div class="cmt-avt">
-              <img src="./image/Anonymous.png" alt="" class="avt-comment" />
-            </div>
-            <div class="cmt-content">
-              <pre class="cmt-text">
-                  123456aaaaaaaaaaaaaaa aaaaaaasssssssssssss ssssssssssssssssssssssss sssssssssssssssssss sssssssssssssssssssss sssssssss sssssssssssssbcxyz
-                </pre>
-            </div>
-          </div>
-          <div class="comment-row">
-            <div class="cmt-avt">
-              <img src="./image/Anonymous.png" alt="" class="avt-comment" />
-            </div>
-            <div class="cmt-content">
-              <pre class="cmt-text" name="contentData">
-                  123456aaaaaaaaaaaaaaa aaaaaaasssssssssssss ssssssssssssssssssssssss sssssssssssssssss sssssssssssssssssssssss sssssssss sssssssssssssbcxyz
-                </pre>
-            </div>
-          </div>
+
         </div>
         <div class="post-comment">
           <form action="" class="comment-form" method="post">

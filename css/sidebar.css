@@ -16,7 +16,7 @@
 .mn-data-content {
   width: 100%;
   height: 100%;
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
   padding: clamp(var(--rem-1), 1.5vw, var(--rem-3));
 }
 
@@ -160,7 +160,7 @@
 .mn-data-content > p {
   width: 100%;
   height: 100%;
-  background-color: aqua;
+  /* background-color: aqua; */
 }
 
 @media screen and (max-width: 900px) {
