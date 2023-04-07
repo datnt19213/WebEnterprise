@@ -40,24 +40,7 @@
             <option value="">5</option>
             <option value="">6</option>
           </select>
-          <select name="" id="" class="option-list-cate" required>
-            <option value="0" selected>Select Department</option>
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-            <option value="">4</option>
-            <option value="">5</option>
-            <option value="">6</option>
-          </select>
-          <select name="" id="" class="option-list-cate" required>
-            <option value="0" selected>Select Potition</option>
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-            <option value="">4</option>
-            <option value="">5</option>
-            <option value="">6</option>
-          </select>
+
           <div class="fb-end-date">
             <p class="fb-end-date-label">Started on</p>
             <input type="date" name="" id="inputDate" class="fb-end-date-input" />
@@ -68,12 +51,12 @@
           </div>
         </div>
         <div class="submit-group">
-          <label for="" class="checkbox-label">
+          <label for="" class="checkbox-label-post">
             <input type="checkbox" class="check-box-terms" name="" value="check box" />
             <p class="terms-check">Post As Anonymous</p>
           </label>
           <button type="submit" class="create-fb-btn">Create</button>
-          <label for="" class="checkbox-label">
+          <label for="" class="checkbox-label-post">
             <input type="checkbox" class="check-box-terms" name="" value="check box" />
             <p class="terms-check">Accepted Terms & Conditions</p>
           </label>
