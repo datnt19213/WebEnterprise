@@ -10,7 +10,10 @@
     <link rel="stylesheet" href="../css/feedbackCreate.css" />
     <link rel="stylesheet" href="../css/adminQaFeedbackManagement.css" />
 </head>
-
+<!-- Chua ket noi database -->
+<!-- Chua ket noi database -->
+<!-- Chua ket noi database -->
+<!-- Chua ket noi database -->
 <body>
     <div class="qaDepartmentqaMa-container">
         <div class="title">
