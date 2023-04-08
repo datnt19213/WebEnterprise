@@ -108,7 +108,7 @@
 
 .qa-ad-scroll-table {
   width: 100%;
-  height: 100%;
+  height: 80%;
   padding: clamp(var(--rem-1), 1.5vw, var(--rem-1));
   overflow: auto;
   scrollbar-width: thin;
@@ -120,7 +120,7 @@
   scrollbar-width: thin;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   align-self: start;
   gap: clamp(var(--rem-15), 0.5vw, var(--rem-1));
@@ -145,6 +145,10 @@
 
 .qa-ad-fb-thead {
   background-color: var(--light-blue-purple);
+}
+
+.y-scroll-tb-data {
+  overflow-y: scroll;
 }
 
 .qa-ad-thead-cell,
@@ -172,4 +176,5 @@
 .qa-ad-fb-tbody {
   background-color: var(--light-blue-white);
   border: 1px solid var(--light-blue-purple);
+  margin-bottom: 0.3vw;
 }
