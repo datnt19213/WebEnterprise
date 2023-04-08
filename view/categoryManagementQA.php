@@ -32,8 +32,8 @@
             while ($row = $result->fetch_assoc()) {
           ?>
               <form class="qa-ad-fb-tbody">
-                <div class="qa-ad-tbody-cell"><?php echo $row["category_name"]; ?></div>
-                <div class="qa-ad-tbody-cell"><?php echo $row["category_desc"]; ?></div>
+                <div class="qa-ad-tbody-cell" title="<?php echo $row["category_name"]; ?>"><p><?php echo $row["category_name"]; ?></p></div>
+                <div class="qa-ad-tbody-cell" title="<?php echo $row["category_desc"]; ?>"><p><?php echo $row["category_desc"]; ?></p></div>
                 <div class="delete-edit">
                   <a class="edit-icon" href="?page=edit&category_id=<?php echo $row["category_id"]; ?>">
                     <img src="./image/edit.png" alt="edit" />
