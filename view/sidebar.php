@@ -70,6 +70,9 @@ include_once("./data/connection.php");
             <a href="./view/qaDepartqaManager.php" class="bar-category-nav" id="qa-depart-manage">
               <p>QA Department</p>
             </a>
+            <a href="./view/addUser.php" class="bar-category-nav" id="qa-depart-manage">
+              <p>Staffs</p>
+            </a>
           </div>
         ';
         } elseif (isset($_SESSION['us']) && $_SESSION['role'] == 1) {
