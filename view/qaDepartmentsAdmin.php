@@ -14,19 +14,6 @@
 </head>
 
 <body>
-<?php
-session_start();
-include_once("./data/connection.php");
-$result = mysqli_query($conn, "SELECT * FROM user_tb a, position_tb b, department_tb c WHERE b.position_id = a.position_id AND c.department_id = a.department_id");
-
-if (!$result)
-{
-    die('Invalid query: ' . mysqli_error($conn));
-}
-
-while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
-{
-?>
     <div class="qa-ad-fb-mn-container">
         <div class="title-contact-btn">
             <p class="ad-qa-mn-title">QA Departments</p>
@@ -45,38 +32,51 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
                     <div class="qa-ad-thead-cell">Description</div>
                 </div>
                 
-                <div class="qa-ad-fb-tbody">
-                    <div class="qa-ad-tbody-cell" title="Name" name="Name">
-                        <p><?php echo  $row['fullname'];?></p>
+                <?php
+                session_start();
+                include_once("../data/connection.php");
+                $result = mysqli_query($conn, "SELECT * FROM user_tb a, position_tb b, deparment_tb c WHERE b.position_id = a.position_id AND c.department_id = a.deparment_id");
+
+                if (!$result)
+                {
+                    die('Invalid query: ' . mysqli_error($conn));
+                }
+
+                while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+                {
+                ?>
+                    <div class="qa-ad-fb-tbody">
+                        <div class="qa-ad-tbody-cell" title="Name" name="Name">
+                            <p><?php echo  $row['fullname'];?></p>
+                        </div>
+                        <div class="qa-ad-tbody-cell" title="DoB" name="DoB">
+                            <p><?php echo  $row['dob'];?></p>
+                        </div>
+                        <div class="qa-ad-tbody-cell" title="Tel" name="Tel">
+                            <p><?php echo  $row['tel'];?></p>
+                        </div>
+                        <div class="qa-ad-tbody-cell" title="Address" name="Address">
+                            <p><?php echo  $row['address'];?></p>
+                        </div>
+                        <div class="qa-ad-tbody-cell" title="Email" name="Email">
+                            <p><?php echo  $row['email'];?></p>
+                        </div>
+                        <div class="qa-ad-tbody-cell" title="Position" name="Position">
+                            <p><?php echo  $row['position_name'];?></p>
+                        </div>
+                        <div class="qa-ad-tbody-cell" title="Department" name="Department">
+                            <p><?php echo  $row['department_name'];?></p>
+                        </div>
+                        <div class="qa-ad-tbody-cell" title="Description" name="Description">
+                            <p><?php echo  $row['description'];?></p>
+                        </div>
                     </div>
-                    <div class="qa-ad-tbody-cell" title="DoB" name="DoB">
-                        <p><?php echo  $row['dob'];?></p>
-                    </div>
-                    <div class="qa-ad-tbody-cell" title="Tel" name="Tel">
-                        <p><?php echo  $row['tel'];?></p>
-                    </div>
-                    <div class="qa-ad-tbody-cell" title="Address" name="Address">
-                        <p><?php echo  $row['address'];?></p>
-                    </div>
-                    <div class="qa-ad-tbody-cell" title="Email" name="Email">
-                        <p><?php echo  $row['email'];?></p>
-                    </div>
-                    <div class="qa-ad-tbody-cell" title="Position" name="Position">
-                        <p><?php echo  $row['position_name'];?></p>
-                    </div>
-                    <div class="qa-ad-tbody-cell" title="Department" name="Department">
-                        <p><?php echo  $row['department_name'];?></p>
-                    </div>
-                    <div class="qa-ad-tbody-cell" title="Description" name="Description">
-                        <p><?php echo  $row['description'];?></p>
-                    </div>
-                </div>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </div>
-<?php
-    }
-?>
 </body>
 
 </html>
