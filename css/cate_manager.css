@@ -111,7 +111,7 @@
     width: 100%;
 }
 .delete-icon{
-    width: var(--rem-3)
+    width: var(--rem-3);
 }
 .delete-icon > img{
     width: 100%;
