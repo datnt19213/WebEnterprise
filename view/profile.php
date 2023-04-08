@@ -19,7 +19,7 @@
           <p class="fb-create-tittle">Your Profile</p>
         </div>
         <div class="pr-form-input">
-          <input type="text" name="" placeholder="Your name" class="fb-end-date" readonly style="pointer-events: none" />
+          <input type="text" name="" placeholder="Your name" class="fb-end-date" readonly style="pointer-events: none; opacity: 0.5" />
           <div class="fb-end-date">
             <p class="fb-end-date-label">Birthday</p>
             <input type="date" name="" id="inputDate" class="fb-end-date-input" />
@@ -27,7 +27,7 @@
         </div>
         <div class="pr-form-input">
           <input type="tel" placeholder="Your phone number" name="" class="fb-end-date" />
-          <select name="" id="" class="option-list-cate" required readonly style="pointer-events: none">
+          <select name="" id="" class="option-list-cate" required readonly style="pointer-events: none; opacity: 0.5">
             <option value="0" selected>Your position</option>
             <option value="">position 1</option>
             <option value="">position 2</option>
@@ -37,7 +37,7 @@
             <option value="">position 6</option>
           </select>
         </div>
-        <input type="email" placeholder="Your email" name="" class="fb-end-date" readonly style="pointer-events: none" />
+        <input type="email" placeholder="Your email" name="" class="fb-end-date" readonly style="pointer-events: none; opacity: 0.5" />
         <input type="text" placeholder="Address" name="" class="fb-end-date" />
         <div class="pr-form-input">
           <select name="" id="" class="option-list-cate" required readonly style="pointer-events: none">
