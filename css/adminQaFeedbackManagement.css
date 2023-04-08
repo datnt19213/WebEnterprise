@@ -155,7 +155,7 @@
 .qa-ad-tbody-cell {
   /* border: 1px solid #000; */
   width: 100%;
-  max-width: 100px;
+  max-width: 200px;
 
   display: flex;
   flex-direction: row;
