@@ -32,6 +32,7 @@
                     <div class="qa-ad-thead-cell">Description</div>
                 </div>
                 
+                <div class="y-scroll-tb-data">
                 <?php
                 session_start();
                 include_once("../data/connection.php");
@@ -46,34 +47,35 @@
                 {
                 ?>
                     <div class="qa-ad-fb-tbody">
-                        <div class="qa-ad-tbody-cell" title="Name" name="Name">
+                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['fullname'];?>" name="Name">
                             <p><?php echo  $row['fullname'];?></p>
                         </div>
-                        <div class="qa-ad-tbody-cell" title="DoB" name="DoB">
+                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['dob'];?>" name="DoB">
                             <p><?php echo  $row['dob'];?></p>
                         </div>
-                        <div class="qa-ad-tbody-cell" title="Tel" name="Tel">
+                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['tel'];?>" name="Tel">
                             <p><?php echo  $row['tel'];?></p>
                         </div>
-                        <div class="qa-ad-tbody-cell" title="Address" name="Address">
+                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['address'];?>" name="Address">
                             <p><?php echo  $row['address'];?></p>
                         </div>
-                        <div class="qa-ad-tbody-cell" title="Email" name="Email">
+                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['email'];?>" name="Email">
                             <p><?php echo  $row['email'];?></p>
                         </div>
-                        <div class="qa-ad-tbody-cell" title="Position" name="Position">
+                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['position_name'];?>" name="Position">
                             <p><?php echo  $row['position_name'];?></p>
                         </div>
-                        <div class="qa-ad-tbody-cell" title="Department" name="Department">
+                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['department_name'];?><" name="Department">
                             <p><?php echo  $row['department_name'];?></p>
                         </div>
-                        <div class="qa-ad-tbody-cell" title="Description" name="Description">
+                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['description'];?>" name="Description">
                             <p><?php echo  $row['description'];?></p>
                         </div>
                     </div>
                 <?php
                 }
                 ?>
+                </div>
             </div>
         </div>
     </div>
