@@ -35,10 +35,13 @@ if (isset($_SESSION['us'])) {
   <link rel="stylesheet" href="./css/staff.css">
   <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js" integrity="sha512-bztGAvCE/3+a1Oh0gUro7BHukf6v7zpzrAb3ReWAVrt+bVNNphcl2tDTKCBr5zk7iEDmQ2Bv401fX3jeVXGIcA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="./js/index.js"></script>
   <script src="./js/home.js"></script>
   <script src="./js/sidebar.js"></script>
   <script src="./js/logOut.js"></script>
+  <script src="./js/content_sidebar_load.js"></script>
+
 </head>
 
 <body>
@@ -158,5 +161,6 @@ if (isset($_SESSION['us'])) {
     </div>
   </div>
 </body>
+
 
 </html>
