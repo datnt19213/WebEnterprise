@@ -67,10 +67,9 @@ if (isset($_SESSION['us'])) {
 
             $categoryLists = mysqli_query($conn, "SELECT * FROM category_tb") or die(mysqli_errno($conn));
             while ($cateRows = mysqli_fetch_array($categoryLists, MYSQLI_ASSOC)) {
-              $linkCateLoad = '?page=' . trim($cateRows['category_name']);
+              echo '<a href="?page=' . str_replace(' ', '', $cateRows['category_name']) . '" class="sub-link">';
             ?>
-              <a href="?page=<? echo $linkCateLoad; ?>" class="sub-link">
-                <p><?php echo $cateRows['category_name']; ?></p>
+              <p><?php echo $cateRows['category_name']; ?></p>
               </a>
             <?php } ?>
           </div>
@@ -81,19 +80,19 @@ if (isset($_SESSION['us'])) {
             <img class="angle-down" src="./image//angle_down.png" alt="" />
           </div>
           <div class="sub-menu-link sub-list sorts">
-            <a href="" class="sub-link">
+            <a href="?page=like" class="sub-link">
               <p>Most Populars Like</p>
             </a>
-            <a href="" class="sub-link">
+            <a href="?page=unlike" class="sub-link">
               <p>Most Populars Unlike</p>
             </a>
-            <a href="" class="sub-link">
+            <a href="?page=seenfb" class="sub-link">
               <p>Seen of Feedback</p>
             </a>
-            <a href="" class="sub-link">
+            <a href="?page=newfb" class="sub-link">
               <p>Newest Feedback</p>
             </a>
-            <a href="" class="sub-link">
+            <a href="?page=newcmt" class="sub-link">
               <p>Newest Comment</p>
             </a>
           </div>
