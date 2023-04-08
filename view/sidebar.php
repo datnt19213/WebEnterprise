@@ -45,7 +45,7 @@ include_once("./data/connection.php");
             <a href="./view/qaMamagementAdmin.php" class="bar-category-nav" id="ad-qa-manage">
               <p>QA Manager</p>
             </a>
-            <a href="./view/qaDepartmentAdmin.php" class="bar-category-nav" id="ad-depart">
+            <a href="./view/qaDepartmentsAdmin.php" class="bar-category-nav" id="ad-depart">
               <p>QA Department</p>
             </a>
             <a href="./view/staff.php" class="bar-category-nav" id="ad-staff">
