@@ -18,7 +18,7 @@
             type="radio"
             class="check-box-terms"
             name="roleUser"
-            value="check box"
+            value="0"
           />
           <p class="terms-check">Staff</p>
         </label>
@@ -27,7 +27,7 @@
             type="radio"
             class="check-box-terms"
             name="roleUser"
-            value="check box"
+            value="1"
           />
           <p class="terms-check">QA-coordinator</p>
         </label>
@@ -36,7 +36,7 @@
             type="radio"
             class="check-box-terms"
             name="roleUser"
-            value="check box"
+            value="2"
           />
           <p class="terms-check">QA-master</p>
         </label>
@@ -45,7 +45,7 @@
             type="radio"
             class="check-box-terms"
             name="roleUser"
-            value="check box"
+            value="3"
           />
           <p class="terms-check">Admin</p>
         </label>
