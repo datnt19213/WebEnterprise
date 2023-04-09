@@ -12,6 +12,7 @@
         <p class="title-right">Add User</p>
         <input type="email" class="input-username" placeholder="Email" />
         <input type="password" class="input-password" placeholder="Password" />
+        <div style="display: flex;">
         <label for="" class="checkbox-label">
           <input
             type="radio"
@@ -48,6 +49,7 @@
           />
           <p class="terms-check">Admin</p>
         </label>
+        </div>
         <button class="login-btn">Add</button>
       </form>
     </div>
