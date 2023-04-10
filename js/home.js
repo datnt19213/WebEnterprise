@@ -17,4 +17,14 @@ $(document).ready(() => {
       $(".show-less-content").hide();
     }
   });
+  if ($(window).width() < 900) {
+    $(".hide-cmt").click(() => {
+      $(".fb-comment").slideDown();
+    });
+    $(".fb-cmt").click(() => {
+      $(".fb-comment").slideUp();
+    });
+  } else {
+    $(".fb-comment").show();
+  }
 });

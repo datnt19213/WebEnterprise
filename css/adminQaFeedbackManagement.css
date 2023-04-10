@@ -117,7 +117,7 @@
 
 .qa-ad-table-data {
   width: fit-content;
-  height: 80%;
+  height: 100%;
   scrollbar-width: thin;
   display: flex;
   flex-direction: column;
@@ -180,4 +180,13 @@
   background-color: var(--light-blue-white);
   border: 1px solid var(--light-blue-purple);
   margin-bottom: 0.3vw;
+}
+
+@media screen and (max-width: 900px) {
+  .qa-ad-fb-mn-container {
+    max-width: 100vw;
+  }
+  .qa-ad-table-data {
+    width: fit-content;
+  }
 }

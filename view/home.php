@@ -23,75 +23,92 @@ include_once("./data/connection.php");
       <!-- feedback box -->
       <div class="fb-list">
         <div class="fb-list-scroll">
+          <?php
+          $fbPost = mysqli_query($conn, "SELECT * FROM feedback_tb");
+          if (!$fbPost) {
+            die('Invalid query: ' . mysqli_error($conn));
+          }
 
-          <form class="fb-list-form-content fb-list-form-content-0" enctype="multipart/form-data" action="" method="post" data-="1">
-            <div class="fb-header-interact">
-              <div class="fb-user-info">
-                <div class="fb-user-data">
-                  <img src="./image/Anonymous.png" alt="avatar" class="avt-user-push" />
+          $keyPost;
+          $fbEmail;
+
+          while ($postRow = mysqli_fetch_array($fbPost, MYSQLI_ASSOC)) {
+            $keyPost = $postRow['comment_id'];
+            $fbEmail = $postRow['email'];
+            $userPost = mysqli_query($conn, "SELECT * FROM user_tb WHERE user_tb.email = '$fbEmail'");
+            $userPostInfo = mysqli_fetch_assoc($userPost);
+          ?>
+            <form class="fb-list-form-content fb-list-form-content-0" enctype="multipart/form-data" action="" method="post" data-="1">
+              <div class="fb-header-interact">
+                <div class="fb-user-info">
+                  <div class="fb-user-data">
+                    <img src="<?php echo $userPostInfo['avatar'] ? $avatar : "./image/defaultUser.png"; ?>" alt="avatar" class="avt-user-push" />
+                  </div>
+                  <div class="end-date-username">
+                    <p class="fb-user-name"><?php echo $userPostInfo['fullname']; ?></p>
+                    <div class="fb-end-date-data">
+                      <p class="date-deadline">Ended on&nbsp;</p>
+                      <p class="date-deadline"><? echo date('m/d/Y', strtotime($postRow['ended_date'])); ?></p>
+                    </div>
+                  </div>
                 </div>
-                <div class="end-date-username">
-                  <p class="fb-user-name">User name</p>
-                  <div class="fb-end-date-data">
-                    <p class="date-deadline">Ended on&nbsp;</p>
-                    <p class="date-deadline">11/11/1111</p>
+                <div class="fb-emotion-interact">
+                  <?php
+                  $idContact = $postRow['contact_id'];
+                  $emailContact = $_SESSION['us'];
+                  $contactLike = mysqli_query($conn, "SELECT * FROM contact_tb WHERE contact_tb.contact_id = '$idContact' AND contact_tb.like = 1");
+                  $contactDislike = mysqli_query($conn, "SELECT * FROM contact_tb WHERE contact_tb.contact_id = '$idContact' AND contact_tb.like = 0");
+                  $clickContact = mysqli_query($conn, "SELECT like FROM contact_tb WHERE contact_tb.contact_id = '$idContact' AND contact_tb.email = '$emailContact'");
+
+                  $likeDislike = mysqli_fetch_assoc($clickContact);
+
+                  ?>
+                  <!--Like press-->
+                  <button type="submit" class="fb-like">
+                    <div class="icon-outline">
+                      <img src="./image/like.png" alt="like ico" class="ico-like" style="<? $likeDislike = 1 ? "opacity: 1" : $likeDislike = 0 ? "opacity: 0.5" : "opacity: 0.5" ?>" />
+                    </div>
+                    <p class="fb-like-label"><? echo $likeNum = mysqli_num_rows($contactLike); ?></p>
+                  </button>
+
+                  <!--Dislike press-->
+                  <button type="submit" class="fb-dislike">
+                    <div class="icon-outline">
+                      <img src="./image/like.png" alt="dislike ico" class="ico-dislike" style="<? $likeDislike = 1 ? "opacity: 1" : $likeDislike = 0 ? "opacity: 0.5" : "opacity: 0.5" ?>" />
+                    </div>
+                    <p class="fb-dislike-label"><? echo $disLikeNum = mysqli_num_rows($contactDislike); ?></p>
+                  </button>
+                  <!--Comment press-->
+                  <div class="fb-cmt">
+                    <div class="icon-outline">
+                      <img src="./image/comment.png" alt="comment ico" class="ico-like" />
+                    </div>
+                    <p class="fb-cmt-label">Comment</p>
                   </div>
                 </div>
               </div>
-              <div class="fb-emotion-interact">
-                <!--Like press-->
-                <button type="submit" class="fb-like">
-                  <div class="icon-outline">
-                    <img src="./image/like.png" alt="like ico" class="ico-like" />
+              <div class="fb-content-data">
+                <?php if ($postRow['document']) { ?>
+                  <div class="btn-view-doc">
+                    <a href="<? echo $postRow['document']; ?>" class="fb-document" target="_blank">
+                      View Document
+                    </a>
                   </div>
-                  <p class="fb-like-label">Like</p>
-                </button>
-
-                <!--Dislike press-->
-                <button type="submit" class="fb-dislike">
-                  <div class="icon-outline">
-                    <img src="./image/like.png" alt="dislike ico" class="ico-dislike" />
-                  </div>
-                  <p class="fb-dislike-label">Dislike</p>
-                </button>
-
-                <!--Comment press-->
-                <button type="submit" class="fb-cmt">
-                  <div class="icon-outline">
-                    <img src="./image/comment.png" alt="comment ico" class="ico-like" />
-                  </div>
-                  <p class="fb-cmt-label">Comment</p>
-                </button>
-              </div>
-            </div>
-            <div class="fb-content-data">
-              <div class="btn-view-doc">
-                <a href="youtube.com" class="fb-document" target="_blank">
-                  View Document
-                </a>
-              </div>
-              <div class="fb-content-para fb-content-para-0">
-                <pre class="fb-text-paragraph">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis nemo optio beatae, accusamus 
-                    voluptate quis hic accusantium at fugit cumque, minima quo. Eligendi molestias perspiciatis veniam sit 
-                    possimus deleniti sint!
-                    Natus dolorum reprehenderit modi minima, repellendus dolores voluptas sint ipsum ratione ullam magni. 
-                    Quae incidunt soluta repellat deleniti fuga odio, quidem totam aliquam vel! Cum quod voluptate et iste dolorum!
-                        
-                                Voluptas maxime culpa quas, cupiditate commodi perspiciatis a iste autem atque veritatis molestiae? 
-                                Minima atque rem voluptate dolor accusamus, possimus odit mollitia quod quia voluptates aspernatur 
-                                quae quos est modi.
-                    Reprehenderit perferendis itaque corporis dolorum, praesentium pariatur cum modi veritatis earum adipisci tempore 
-                    temporibus eum nisi nihil blanditiis ex inventore aperiam consequuntur, veniam eius necessitatibus ipsa voluptate 
-                    et! Ipsam, similique?
-                    Ratione aliquid, facilis veritatis perspiciatis quas labore ut neque vero doloribus itaque earum doloremque fugit 
-                    recusandae nemo nisi eveniet id cum. Eius voluptatibus, minus repellat ut soluta sunt quod mollitia.
+                <? } ?>
+                <div class="fb-content-para fb-content-para-0">
+                  <pre class="fb-text-paragraph">
+                    <?php echo $postRow['feedback_content']; ?>
                   </pre>
+                </div>
+                <?php
+                $lenContent = strlen($postRow['feedback_content']);
+                if ($lenContent >= 500) { ?>
+                  <p class="show-more-content show-more-content-0">Show more</p>
+                  <p class="show-less-content show-less-content-0">Show less</p>
+                <?php } ?>
               </div>
-              <p class="show-more-content show-more-content-0">Show more</p>
-              <p class="show-less-content show-less-content-0">Show less</p>
-            </div>
-          </form>
+            </form>
+          <?php } ?>
 
         </div>
       </div>
@@ -101,16 +118,25 @@ include_once("./data/connection.php");
           <p>Hide</p>
         </div>
         <div class="list-comment">
-          <!-- comment list -->
-          <div class="comment-row">
-            <div class="cmt-avt">
-              <img src="./image/Anonymous.png" alt="" class="avt-comment" />
-            </div>
-            <div class="cmt-content">
-              <pre class="cmt-text">123456abcxyz</pre>
-            </div>
-          </div>
+          <?php
+          $cmtQuery = mysqli_query($conn, "SELECT * FROM comment_tb WHERE comment_tb.comment_id = '$keyPost'");
 
+          while ($cmtRow = mysqli_fetch_array($cmtQuery, MYSQLI_ASSOC)) {
+            $cmtUser = $cmtRow['email'];
+            $cmtState = $cmtRow['state_code'];
+            $cmtNonAnoQuery = mysqli_query($conn, "SELECT * FROM user_tb WHERE comment_tb.email = '$cmtUser' AND state_code = 1");
+            $cmtNonAno = mysqli_fetch_assoc($cmtNonAnoQuery);
+          ?>
+            <!-- comment list -->
+            <div class="comment-row">
+              <div class="cmt-avt">
+                <img src="<? $cmtState = 1 ? $cmtNonAno['avatar'] : "./image/Anonymous.png" ?>" alt="Avatar" class="avt-comment" />
+              </div>
+              <div class="cmt-content">
+                <pre class="cmt-text"><? echo $cmtRow['comment_content'] ?></pre>
+              </div>
+            </div>
+          <?php } ?>
         </div>
         <div class="post-comment">
           <form action="" class="comment-form" method="post">
