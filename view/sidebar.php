@@ -98,7 +98,7 @@ include_once("./data/connection.php");
     </div>
     <div class="mn-data-content" id="content-load">
       <div class="section-content">
-
+        WELCOME TO DASHBOARD
       </div>
     </div>
   </div>

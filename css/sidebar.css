@@ -111,7 +111,7 @@
   align-self: center;
   width: 100%;
   height: 100%;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 
 .admin-side-bar {
@@ -162,6 +162,37 @@
   width: 100%;
   height: 100%;
   /* background-color: aqua; */
+}
+
+.section-content {
+  font-size: clamp(var(--rem-2), 3vw, var(--rem-3));
+  font-family: sans-serif;
+  text-align: center;
+  font-weight: bold;
+  padding: clamp(calc(var(--rem-2) * 5), 5vw, calc(var(--rem-3) * 5)) 0;
+  letter-spacing: clamp(var(--rem-05), 1vw, var(--rem-2));
+  white-space: clamp(var(--rem-05), 1vw, var(--rem-2));
+  color: var(--dark-blue);
+  text-decoration: underline;
+  border: 1px solid var(--dark-blue);
+  border-radius: clamp(var(--rem-05), 1vw, var(--rem-2));
+  box-shadow: 0px 0px 8px 3px var(--white-color);
+  animation: fadein 3000ms;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @media screen and (max-width: 900px) {

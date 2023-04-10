@@ -42,6 +42,7 @@ if (isset($_SESSION['us'])) {
   <script src="./js/logOut.js"></script>
   <script src="./js/content_sidebar_load.js"></script>
 
+
 </head>
 
 <body>
@@ -108,7 +109,7 @@ if (isset($_SESSION['us'])) {
         } elseif (isset($_SESSION['us']) && ($_SESSION['role'] == 1
           || $_SESSION['role'] == 2
           || $_SESSION['role'] == 3)) {
-          echo '<a href="?page=management" class="fb-create">
+          echo '<a href="?page=management" class="fb-create" id="dashboard-higher-role">
                   <p class="fb-create-title">DASHBOARD</p>
                 </a>';
         }
@@ -125,8 +126,8 @@ if (isset($_SESSION['us'])) {
           </div>
         </div>
       </div>
-      <div class="title-link-menu logout-show hidden-logout">
-        <a href="view/logout.php" class="link-title" onclick="return confirm('Do you want to end the login session?')">
+      <div class="title-link-menu logout-show hidden-logout" id="log-to-out">
+        <a href="view/logout.php" id="log-to-out" class="link-title" onclick="return confirm('Do you want to end the login session?')">
           <p>Log out</p>
         </a>
       </div>
