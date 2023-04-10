@@ -1,6 +1,5 @@
 <?php
 include_once("./data/connection.php");
-
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +23,7 @@ include_once("./data/connection.php");
           <p class="fb-create-tittle">Feedback Create</p>
         </div>
         <div class="wrapper-textarea">
-          <textarea class="textarea-feedback-content" name="" id="" cols="30" rows="18" maxlength="10000" placeholder="Feedback Content"></textarea>
+          <textarea class="textarea-feedback-content" name="fbCrea_contentFeedback" required id="" cols="30" rows="18" maxlength="10000" placeholder="Feedback Content"></textarea>
         </div>
       </div>
       <div class="fb-file-time-submit">
@@ -77,14 +76,59 @@ include_once("./data/connection.php");
 
 <?php
 if (isset($_POST['fbCrea_SubmitBtn'])) {
-  $fbCrea_Doc = $_FILES['fbCrea_DocsFile'];
+  $fbCrea_contentFeedback = $_POST['fbCrea_contentFeedback'];
+  // $fbCrea_Doc = 
+  // $_FILES['fbCrea_DocsFile'];
   $fbCrea_Cate = $_POST['fbCrea_Category'];
   $fbCrea_StartDate = $_POST['fbCrea_StartDate'];
   $fbCrea_EndDate = $_POST['fbCrea_EndDate'];
-  $fbCrea_TypePost = $_POST['fbCrea_TypePost'];
-  $fbCrea_TermsCheck = $_POST['fbCrea_TermsCheck'];
+  $fbCrea_TypePost = isset($_POST['fbCrea_TypePost']) ? $_POST['fbCrea_TypePost'] : 0;
+  $fbCrea_TermsCheck = isset($_POST['fbCrea_TermsCheck']) ? $_POST['fbCrea_TermsCheck'] : 0;
 
-  if ($fbCrea_Cate && $fbCrea_StartDate && $fbCrea_EndDate && $fbCrea_TypePost && $fbCrea_Terms) {
+  if ($fbCrea_contentFeedback && $fbCrea_Cate && $fbCrea_StartDate && $fbCrea_EndDate) {
+
+    $fbCreaStart_Date = date('Y-m-d', strtotime($fbCrea_StartDate));
+    $fbCreaEnd_Date = date('Y-m-d', strtotime($fbCrea_EndDate));
+    $userEmail = $_SESSION['us'];
+    $getPosUserQuery = mysqli_query($conn, "SELECT position_id FROM user_tb 
+                WHERE email = '$userEmail'");
+    if (!$getPosUserQuery) {
+      die("Error getting position ID: " . mysqli_error($conn));
+    }
+    $getDepUserQuery = mysqli_query($conn, "SELECT department_id FROM user_tb 
+                WHERE email = '$userEmail'");
+    if (!$getDepUserQuery) {
+      die("Error getting department ID: " . mysqli_error($conn));
+    }
+    $getPosUser = mysqli_fetch_array($getPosUserQuery, MYSQLI_ASSOC)['position_id'];
+    $getDepUser = mysqli_fetch_array($getDepUserQuery, MYSQLI_ASSOC)['department_id'];
+
+    if (isset($_FILES['fbCrea_DocsFile']) && $_FILES['fbCrea_DocsFile']['error'] == 0) {
+      $file_name = $_FILES["fbCrea_DocsFile"]["name"];
+      $file_size = $_FILES["fbCrea_DocsFile"]["size"];
+      $file_tmp = $_FILES["fbCrea_DocsFile"]["tmp_name"];
+      $file_type = $_FILES["fbCrea_DocsFile"]["type"];
+
+      $upload_dir = "./uploads/";
+      $file_path = $upload_dir . $file_name;
+      move_uploaded_file($file_tmp, $file_path);
+
+
+
+      $insertFbCrea = mysqli_query($conn, "INSERT INTO feedback_tb (email, feedback_content, document, category_id, started_date, ended_date, post_state, position_id, department_id) VALUES ('$userEmail', '$fbCrea_contentFeedback', '$file_path', '$fbCrea_Cate', '$fbCreaStart_Date', '$fbCreaEnd_Date', '$fbCrea_TypePost', '$getPosUser', '$getDepUser')");
+      if ($insertFbCrea) {
+        echo '<script>alert("Feedback Created")</script>';
+      } else {
+        echo '<script>alert("Post fail 1")</script>';
+      }
+    } else {
+      $insertFbCrea = mysqli_query($conn, "INSERT INTO feedback_tb (email, feedback_content, category_id, started_date, ended_date, post_state, position_id, department_id) VALUES ('$userEmail', '$fbCrea_contentFeedback', '$fbCrea_Cate', '$fbCreaStart_Date', '$fbCreaEnd_Date', '$fbCrea_TypePost', '$getPosUser', '$getDepUser')");
+      if ($insertFbCrea) {
+        echo '<script>alert("Feedback Created")</script>';
+      } else {
+        echo '<script>alert("Post fail 2")</script>';
+      }
+    }
   } else {
     echo '<script>alert("Please enter fields")</script>';
   }
