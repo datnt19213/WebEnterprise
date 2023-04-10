@@ -29,8 +29,8 @@ include_once("./data/connection.php");
             die('Invalid query: ' . mysqli_error($conn));
           }
 
-          $keyPost;
-          $fbEmail;
+          $keyPost = "";
+          $fbEmail = "";
 
           while ($postRow = mysqli_fetch_array($fbPost, MYSQLI_ASSOC)) {
             $keyPost = $postRow['comment_id'];
@@ -48,7 +48,7 @@ include_once("./data/connection.php");
                     <p class="fb-user-name"><?php echo $userPostInfo['fullname']; ?></p>
                     <div class="fb-end-date-data">
                       <p class="date-deadline">Ended on&nbsp;</p>
-                      <p class="date-deadline"><? echo date('m/d/Y', strtotime($postRow['ended_date'])); ?></p>
+                      <p class="date-deadline"><?php echo date('m/d/Y', strtotime($postRow['ended_date'])); ?></p>
                     </div>
                   </div>
                 </div>
@@ -66,17 +66,17 @@ include_once("./data/connection.php");
                   <!--Like press-->
                   <button type="submit" class="fb-like">
                     <div class="icon-outline">
-                      <img src="./image/like.png" alt="like ico" class="ico-like" style="<? $likeDislike = 1 ? "opacity: 1" : $likeDislike = 0 ? "opacity: 0.5" : "opacity: 0.5" ?>" />
+                      <img src="./image/like.png" alt="like ico" class="ico-like" style="<?php $likeDislike = 1 ? "opacity: 1" : $likeDislike = 0 ? "opacity: 0.5" : "opacity: 0.5" ?>" />
                     </div>
-                    <p class="fb-like-label"><? echo $likeNum = mysqli_num_rows($contactLike); ?></p>
+                    <p class="fb-like-label"><?php echo $likeNum = mysqli_num_rows($contactLike); ?></p>
                   </button>
 
                   <!--Dislike press-->
                   <button type="submit" class="fb-dislike">
                     <div class="icon-outline">
-                      <img src="./image/like.png" alt="dislike ico" class="ico-dislike" style="<? $likeDislike = 1 ? "opacity: 1" : $likeDislike = 0 ? "opacity: 0.5" : "opacity: 0.5" ?>" />
+                      <img src="./image/like.png" alt="dislike ico" class="ico-dislike" style="<?php $likeDislike = 1 ? "opacity: 1" : $likeDislike = 0 ? "opacity: 0.5" : "opacity: 0.5" ?>" />
                     </div>
-                    <p class="fb-dislike-label"><? echo $disLikeNum = mysqli_num_rows($contactDislike); ?></p>
+                    <p class="fb-dislike-label"><?php echo $disLikeNum = mysqli_num_rows($contactDislike); ?></p>
                   </button>
                   <!--Comment press-->
                   <div class="fb-cmt">
@@ -90,11 +90,11 @@ include_once("./data/connection.php");
               <div class="fb-content-data">
                 <?php if ($postRow['document']) { ?>
                   <div class="btn-view-doc">
-                    <a href="<? echo $postRow['document']; ?>" class="fb-document" target="_blank">
+                    <a href="<?php echo $postRow['document']; ?>" class="fb-document" target="_blank">
                       View Document
                     </a>
                   </div>
-                <? } ?>
+                <?php } ?>
                 <div class="fb-content-para fb-content-para-0">
                   <pre class="fb-text-paragraph">
                     <?php echo $postRow['feedback_content']; ?>
@@ -130,10 +130,10 @@ include_once("./data/connection.php");
             <!-- comment list -->
             <div class="comment-row">
               <div class="cmt-avt">
-                <img src="<? $cmtState = 1 ? $cmtNonAno['avatar'] : "./image/Anonymous.png" ?>" alt="Avatar" class="avt-comment" />
+                <img src="<?php $cmtState = 1 ? $cmtNonAno['avatar'] : "./image/Anonymous.png" ?>" alt="Avatar" class="avt-comment" />
               </div>
               <div class="cmt-content">
-                <pre class="cmt-text"><? echo $cmtRow['comment_content'] ?></pre>
+                <pre class="cmt-text"><?php echo $cmtRow['comment_content'] ?></pre>
               </div>
             </div>
           <?php } ?>
