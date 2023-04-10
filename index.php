@@ -41,6 +41,7 @@ if (isset($_SESSION['us'])) {
   <script src="./js/sidebar.js"></script>
   <script src="./js/logOut.js"></script>
   <script src="./js/content_sidebar_load.js"></script>
+  <script src="./js/showNameFile.js"></script>
 
 
 </head>

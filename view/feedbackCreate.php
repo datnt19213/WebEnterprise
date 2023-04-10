@@ -1,3 +1,8 @@
+<?php
+include_once("./data/connection.php");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,39 +30,43 @@
       <div class="fb-file-time-submit">
         <div class="select-data-to-submit">
           <div class="fb-file-input">
-            <input type="file" name="" id="fileInput" style="display: none" />
+            <input type="file" name="fbDocument" name="fbCrea_DocsFile" id="fileInput" style="display: none" />
             <label for="fileInput" class="label-input-file">
               Document Import
             </label>
-            <p>abc.xyz</p>
+            <p id="fileInputName" style="max-width: 5vw; max-height: 2vw"></p>
           </div>
-          <select name="" id="" class="option-list-cate" required>
-            <option value="0" selected>Select Category</option>
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-            <option value="">4</option>
-            <option value="">5</option>
-            <option value="">6</option>
+          <?php
+          $fbCreaCateLists = mysqli_query($conn, "SELECT * FROM category_tb");
+          ?>
+          <select name="fbCrea_Category" id="" class="option-list-cate" required>
+            <option value="" selected>Select Category</option>
+            <?php
+            while ($creaCateListRow = mysqli_fetch_array($fbCreaCateLists, MYSQLI_ASSOC)) {
+            ?>
+              <option value="<?php echo $creaCateListRow['category_id']; ?>">
+                <?php echo $creaCateListRow['category_name']; ?>
+              </option>
+            <?php } ?>
           </select>
 
           <div class="fb-end-date">
             <p class="fb-end-date-label">Started on</p>
-            <input type="date" name="" id="inputDate" class="fb-end-date-input" />
+            <input type="date" name="fbCrea_StartDate" id="inputDate" class="fb-end-date-input" required />
           </div>
           <div class="fb-end-date">
             <p class="fb-end-date-label">Ended on</p>
-            <input type="date" name="" id="inputDate" class="fb-end-date-input" />
+            <input type="date" name="fbCrea_EndDate" id="inputDate" class="fb-end-date-input" required />
           </div>
         </div>
         <div class="submit-group">
           <label for="" class="checkbox-label-post">
-            <input type="checkbox" class="check-box-terms" name="" value="check box" />
+            <input type="checkbox" class="check-box-terms" name="fbCrea_TypePost" value="1" />
             <p class="terms-check">Post As Anonymous</p>
           </label>
-          <button type="submit" class="create-fb-btn">Create</button>
+          <button type="submit" name="fbCrea_SubmitBtn" class="create-fb-btn">Create</button>
           <label for="" class="checkbox-label-post">
-            <input type="checkbox" class="check-box-terms" name="" value="check box" />
+            <input type="checkbox" class="check-box-terms" name="fbCrea_TermsCheck" value="1" required />
             <p class="terms-check">Accepted Terms & Conditions</p>
           </label>
         </div>
@@ -65,5 +74,22 @@
     </form>
   </div>
 </body>
+
+<?php
+if (isset($_POST['fbCrea_SubmitBtn'])) {
+  $fbCrea_Doc = $_FILES['fbCrea_DocsFile'];
+  $fbCrea_Cate = $_POST['fbCrea_Category'];
+  $fbCrea_StartDate = $_POST['fbCrea_StartDate'];
+  $fbCrea_EndDate = $_POST['fbCrea_EndDate'];
+  $fbCrea_TypePost = $_POST['fbCrea_TypePost'];
+  $fbCrea_TermsCheck = $_POST['fbCrea_TermsCheck'];
+
+  if ($fbCrea_Cate && $fbCrea_StartDate && $fbCrea_EndDate && $fbCrea_TypePost && $fbCrea_Terms) {
+  } else {
+    echo '<script>alert("Please enter fields")</script>';
+  }
+}
+
+?>
 
 </html>
