@@ -145,6 +145,18 @@
   border-bottom: none;
   background-color: var(--white-color);
   left: 0;
+  animation: fadeMoveUp 500ms forwards;
+}
+
+@keyframes fadeMoveUp {
+  0% {
+    opacity: 0.5;
+    transform: translateY(8%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
 }
 
 .sub-link {

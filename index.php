@@ -4,7 +4,7 @@ include_once("./data/connection.php");
 
 if (isset($_SESSION['us'])) {
   $welcomeMess = "Welcome " . $_SESSION['us'] . " to feedback website";
-  echo '<script>alert(' . $welcomeMess . ')</script>';
+  // echo '<script>alert("' . $welcomeMess . '")</script>';
 } else {
   header("Location: ./view/login.php");
 }
@@ -42,6 +42,7 @@ if (isset($_SESSION['us'])) {
   <script src="./js/logOut.js"></script>
   <script src="./js/content_sidebar_load.js"></script>
   <script src="./js/showNameFile.js"></script>
+  <script src="./js/savedFeedbackContent.js"></script>
 
 
 </head>
