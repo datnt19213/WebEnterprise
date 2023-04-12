@@ -23,12 +23,12 @@
   /* align-items: center; */
   /* border: 1px solid #000; */
   gap: clamp(var(--rem-1), 1.5vw, var(--rem-3));
-  padding: clamp(var(--rem-1), 1.5vw, var(--rem-3));
+  padding: clamp(var(--rem-1), 1vw, var(--rem-3));
 }
 
 .fb-content-input {
   width: 100%;
-  border: 1px solid #000;
+  border: 1px solid var(--dark-blue);
   border-radius: clamp(
     calc(var(--rem-1) + 1vw),
     1.5vw,
@@ -73,7 +73,7 @@
 .textarea-feedback-content {
   resize: none;
   width: 100%;
-  height: 100%;
+  height: 90%;
   border-radius: clamp(
     calc(var(--rem-1) + 1vw),
     1.5vw,
@@ -93,7 +93,7 @@
 
 .fb-file-time-submit {
   width: 100%;
-  border: 1px solid #000;
+  border: 1px solid var(--dark-blue);
   border-radius: clamp(
     calc(var(--rem-1) + 1vw),
     1.5vw,

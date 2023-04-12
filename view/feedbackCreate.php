@@ -121,7 +121,7 @@ include_once("./data/connection.php");
               $insertFbCrea = "INSERT INTO feedback_tb (email, feedback_content, document, category_id, started_date, ended_date, post_state, position_id, department_id) VALUES ('$userEmail', '$fbCrea_contentFeedback', '$file_path', '$fbCrea_Cate', '$fbCreaStart_Date', '$fbCreaEnd_Date', '$fbCrea_TypePost', '$getPosUser', '$getDepUser')";
 
               if (mysqli_query($conn, $insertFbCrea)) {
-                echo '<script>alert("Feedback created 1.")</script>';
+                echo '<script>alert("Feedback Created")</script>';
                 echo '<meta http-equiv="refresh" content="0;URL=?page=create"/>';
               } else {
                 $error_message = mysqli_error($conn);
@@ -132,10 +132,10 @@ include_once("./data/connection.php");
             // echo '<script>confirm("No document or error! Do you want to post this feedback the without this document file?")</script>';
             $insertFbCrea = mysqli_query($conn, "INSERT INTO feedback_tb (email, feedback_content, category_id, started_date, ended_date, post_state, position_id, department_id) VALUES ('$userEmail', '$fbCrea_contentFeedback', '$fbCrea_Cate', '$fbCreaStart_Date', '$fbCreaEnd_Date', '$fbCrea_TypePost', '$getPosUser', '$getDepUser')");
             if ($insertFbCrea) {
-              echo '<script>alert("Feedback Created 2")</script>';
+              echo '<script>alert("Feedback Created")</script>';
               echo '<meta http-equiv="refresh" content="0;URL=?page=create"/>';
             } else {
-              echo '<script>alert("Post fail 2")</script>';
+              echo '<script>alert("Post Failed")</script>';
             }
           }
         } else {

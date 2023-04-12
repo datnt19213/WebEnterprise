@@ -29,7 +29,7 @@
 
 .navigation {
   display: flex;
-  height: min(calc(var(--rem-3) + 5vw), calc(5vw + var(--rem-3) + 3vw));
+  height: min(calc(var(--rem-3) + 3vw), calc(5vw + var(--rem-3) + 3vw));
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -39,7 +39,7 @@
 }
 
 .logo-index {
-  width: clamp(calc(var(--rem-3) + 3vw), 2vw, calc(var(--rem-3) + 5vw));
+  width: clamp(calc(var(--rem-3) + 2vw), 2vw, calc(var(--rem-3) + 5vw));
   border-radius: 100%;
   box-shadow: 0px 0px 15px 1.5px var(--light-blue-white);
   overflow: hidden;
@@ -138,9 +138,10 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: min(calc(var(--rem-3) + 5vw), calc(5vw + var(--rem-3) + 3vw));
+  top: min(calc(var(--rem-3) + 3vw), calc(5vw + var(--rem-3) + 3vw));
   background-color: var(--white-color);
   border: 1px solid var(--dark-blue);
+  box-shadow: 0px 8px 15px 3px rgba(30, 30, 30, 0.1);
   border-top: none;
   border-bottom: none;
   background-color: var(--white-color);
@@ -253,7 +254,8 @@
   font-family: sans-serif;
   font-size: clamp(var(--rem-1), 2vw, var(--rem-15));
   color: var(--dark-blue);
-  margin: min(calc(var(--rem-1) * 3 + 1.5vw), var(--rem-1) + 1.5vw);
+  /* margin: min(calc(var(--rem-1) * 3 + 1.5vw), var(--rem-1) + 1.5vw); */
+  margin: 0.5% 0px;
   opacity: 0.8;
   z-index: 1;
 }

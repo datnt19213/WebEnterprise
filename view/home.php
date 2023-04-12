@@ -21,96 +21,52 @@ include_once("./data/connection.php");
   <div class="home-container">
     <div class="fb-view-container">
       <!-- feedback box -->
-      <div class="fb-list">
-        <div class="fb-list-scroll">
-          <?php
-          $fbPost = mysqli_query($conn, "SELECT * FROM feedback_tb");
-          if (!$fbPost) {
-            die('Invalid query: ' . mysqli_error($conn));
-          }
+      <div class="fb-list" id="fb-list">
+        <div class="fb-list-scroll" id="loaderData">
 
-          $keyPost = "";
-          $fbEmail = "";
+          <script>
+            var p_num = 1;
+            var isLoad = false;
+            toLoad();
 
-          while ($postRow = mysqli_fetch_array($fbPost, MYSQLI_ASSOC)) {
-            $keyPost = $postRow['comment_id'];
-            $fbEmail = $postRow['email'];
-            $userPost = mysqli_query($conn, "SELECT * FROM user_tb WHERE user_tb.email = '$fbEmail'");
-            $userPostInfo = mysqli_fetch_assoc($userPost);
-          ?>
-            <form class="fb-list-form-content fb-list-form-content-0" enctype="multipart/form-data" action="" method="post" data-="1">
-              <div class="fb-header-interact">
-                <div class="fb-user-info">
-                  <div class="fb-user-data">
-                    <img src="<?php echo $userPostInfo['avatar'] ? $avatar : "./image/defaultUser.png"; ?>" alt="avatar" class="avt-user-push" />
-                  </div>
-                  <div class="end-date-username">
-                    <p class="fb-user-name"><?php echo $userPostInfo['fullname']; ?></p>
-                    <div class="fb-end-date-data">
-                      <p class="date-deadline">Ended on&nbsp;</p>
-                      <p class="date-deadline"><?php echo date('m/d/Y', strtotime($postRow['ended_date'])); ?></p>
-                    </div>
-                  </div>
-                </div>
-                <div class="fb-emotion-interact">
-                  <?php
-                  $idContact = $postRow['contact_id'];
-                  $emailContact = $_SESSION['us'];
-                  $contactLike = mysqli_query($conn, "SELECT * FROM contact_tb WHERE contact_tb.contact_id = '$idContact' AND contact_tb.like = 1");
-                  $contactDislike = mysqli_query($conn, "SELECT * FROM contact_tb WHERE contact_tb.contact_id = '$idContact' AND contact_tb.like = 0");
-                  $clickContact = mysqli_query($conn, "SELECT like FROM contact_tb WHERE contact_tb.contact_id = '$idContact' AND contact_tb.email = '$emailContact'");
+            const containerEl = document.getElementById('fb-list');
 
-                  $likeDislike = mysqli_fetch_assoc($clickContact);
+            containerEl.addEventListener('scroll', function() {
+              const scrollTop = containerEl.scrollTop;
+              const scrollHeight = containerEl.scrollHeight;
+              const clientHeight = containerEl.clientHeight;
 
-                  ?>
-                  <!--Like press-->
-                  <button type="submit" class="fb-like">
-                    <div class="icon-outline">
-                      <img src="./image/like.png" alt="like ico" class="ico-like" style="<?php $likeDislike = 1 ? "opacity: 1" : $likeDislike = 0 ? "opacity: 0.5" : "opacity: 0.5" ?>" />
-                    </div>
-                    <p class="fb-like-label"><?php echo $likeNum = mysqli_num_rows($contactLike); ?></p>
-                  </button>
+              if (scrollTop + clientHeight === scrollHeight) {
+                if (!isLoad) {
+                  toLoad();
+                }
+              }
+            });
 
-                  <!--Dislike press-->
-                  <button type="submit" class="fb-dislike">
-                    <div class="icon-outline">
-                      <img src="./image/like.png" alt="dislike ico" class="ico-dislike" style="<?php $likeDislike = 1 ? "opacity: 1" : $likeDislike = 0 ? "opacity: 0.5" : "opacity: 0.5" ?>" />
-                    </div>
-                    <p class="fb-dislike-label"><?php echo $disLikeNum = mysqli_num_rows($contactDislike); ?></p>
-                  </button>
-                  <!--Comment press-->
-                  <div class="fb-cmt">
-                    <div class="icon-outline">
-                      <img src="./image/comment.png" alt="comment ico" class="ico-like" />
-                    </div>
-                    <p class="fb-cmt-label">Comment</p>
-                  </div>
-                </div>
-              </div>
-              <div class="fb-content-data">
-                <?php if ($postRow['document']) { ?>
-                  <div class="btn-view-doc">
-                    <a href="<?php echo $postRow['document']; ?>" class="fb-document" target="_blank">
-                      View Document
-                    </a>
-                  </div>
-                <?php } ?>
-                <div class="fb-content-para fb-content-para-0">
-                  <pre class="fb-text-paragraph">
-                    <?php echo $postRow['feedback_content']; ?>
-                  </pre>
-                </div>
-                <?php
-                $lenContent = strlen($postRow['feedback_content']);
-                if ($lenContent >= 500) { ?>
-                  <p class="show-more-content show-more-content-0">Show more</p>
-                  <p class="show-less-content show-less-content-0">Show less</p>
-                <?php } ?>
-              </div>
-            </form>
-          <?php } ?>
+
+            // $("#loaderData").scroll(function() {
+            //   // if ($(".fb-list").scrollTop() + $(".fb-list").height() > $(".fb-view-container").height() + 1000) {
+            //   // if (!isLoad) {
+            //   toLoad();
+            //   // }
+            // })
+
+            function toLoad() {
+              isLoad = true;
+              $(".loader").show();
+              $.post("./controller/loadmore.php", {
+                p: p_num
+              }, (response) => {
+                $("#loaderData").append(response);
+                $(".loader").hide();
+                isLoad = false;
+                p_num++;
+              })
+            }
+          </script>
 
         </div>
+        <span class="loader" style="display: none;"></span>
       </div>
       <!-- comment box -->
       <div class="fb-comment">
@@ -119,7 +75,7 @@ include_once("./data/connection.php");
         </div>
         <div class="list-comment">
           <?php
-          $cmtQuery = mysqli_query($conn, "SELECT * FROM comment_tb WHERE comment_tb.comment_id = '$keyPost'");
+          $cmtQuery = mysqli_query($conn, "SELECT * FROM comment_tb, feedback_tb WHERE comment_tb.comment_id = feedback_tb.comment_id");
 
           while ($cmtRow = mysqli_fetch_array($cmtQuery, MYSQLI_ASSOC)) {
             $cmtUser = $cmtRow['email'];
