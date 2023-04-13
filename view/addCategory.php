@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
 
   // Thực thi truy vấn và kiểm tra xem liệu có thành công hay không
   if ($insertUserQuery) {
-    echo "Category added successfully";
+    echo '<script>alert("Category added successfully")</script>';
   } else {
     echo "error: " .mysqli_error($conn);
   }
