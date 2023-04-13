@@ -101,11 +101,9 @@ include_once "../data/connection.php";
         $(document).ready(function(){
           $("#addU_department").change(function(){
             localStorage.setItem("dep", $("#addU_department").val())
-            alert(localStorage.getItem("dep"));
           })
           $("#addU_position").change(function(){
             localStorage.setItem("pos", $("#addU_position").val())
-            alert(localStorage.getItem("pos"));
           })
           $("#submitAddUser").click(function(){
 
