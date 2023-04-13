@@ -158,6 +158,11 @@
   align-items: center;
 }
 
+.mn-data-content {
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}
+
 .mn-data-content > p {
   width: 100%;
   height: 100%;

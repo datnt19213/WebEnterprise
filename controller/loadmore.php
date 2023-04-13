@@ -11,12 +11,8 @@ if (!$fbPost) {
     die('Invalid query: ' . mysqli_error($conn));
 }
 
-$keyPost = "";
-$fbEmail = "";
-
 while ($postRow = mysqli_fetch_array($fbPost, MYSQLI_ASSOC)) {
-    // $keyPost = $postRow['comment_id'];
-    // $fbEmail = $postRow['email'];
+    $fbEmail = $postRow['email'];
     $userPost = mysqli_query($conn, "SELECT * FROM user_tb WHERE user_tb.email = '$fbEmail'");
     $userPostInfo = mysqli_fetch_array($userPost);
 ?>
@@ -24,14 +20,14 @@ while ($postRow = mysqli_fetch_array($fbPost, MYSQLI_ASSOC)) {
         <div class="fb-header-interact">
             <div class="fb-user-info">
                 <div class="fb-user-data">
-                    <img src="<?php if ($postRow['post_state'] = 0) {
+                    <img src="<?php if ($postRow['post_state'] == 0) {
                                     echo $userPostInfo['avatar'] ? $userPostInfo['avatar'] : "./image/defaultUser.png";
                                 } else {
                                     echo "./image/Anonymous.png";
                                 } ?>" alt="" class="avt-user-push" />
                 </div>
                 <div class="end-date-username">
-                    <p class="fb-user-name"><?php echo $authorPost = $postRow['post_state'] = 0 ? $userPostInfo['fullname'] : "Anonymous" ?></p>
+                    <p class="fb-user-name"><?php echo $authorPost = $postRow['post_state'] == 0 ? $userPostInfo['fullname'] : "Anonymous" ?></p>
                     <div class="fb-end-date-data">
                         <p class="date-deadline">Ended on&nbsp;</p>
                         <p class="date-deadline"><?php echo date('m/d/Y', strtotime($postRow['ended_date'])); ?></p>
@@ -41,9 +37,15 @@ while ($postRow = mysqli_fetch_array($fbPost, MYSQLI_ASSOC)) {
             <div class="fb-emotion-interact">
                 <?php
                 $idContact = $postRow['contact_id'];
+                $userContact = $postRow['email'];
 
-                $contactLikeQuery = "SELECT like FROM comment_tb WHERE comment_tb.comment_id = '$idContact'";
-                $dislikeCountQuery = "SELECT dislike FROM comment_tb WHERE comment_tb.comment_id = '$idContact'";
+                $contactLikeQuery = "SELECT like FROM contact_tb WHERE contact_tb.contact_id = '$idContact' AND contact_tb.like = 1";
+                $dislikeCountQuery = "SELECT dislike FROM contact_tb WHERE contact_tb.contact_id = '$idContact' AND contact_tb.dislike = 1";
+
+                $likeCheckQuery = "SELECT * FROM contact_tb WHERE contact_tb.contact_id = '$idContact' AND contact_tb.email = '$userContact'";
+                $likeCheckResult = mysqli_query($conn, $likeCheckQuery);
+
+                $likeCheck = mysqli_fetch_array($likeCheckResult);
 
                 if ($countLikeResult = mysqli_query($conn, $contactLikeQuery)) {
                     $countLikeNum = mysqli_num_rows($countLikeResult);
@@ -56,27 +58,38 @@ while ($postRow = mysqli_fetch_array($fbPost, MYSQLI_ASSOC)) {
                 } else {
                     $countDislikeNum = 0;
                 };
-                // $emailContact = $_SESSION['us'];
-                // $clickContact = mysqli_query($conn, "SELECT like FROM contact_tb WHERE contact_tb.contact_id = '$idContact' AND contact_tb.email = '$emailContact'");
 
+
+                $likeId = $postRow['feedback_id'];
                 ?>
                 <!--Like press-->
-                <button type="submit" class="fb-like">
+                <button type="button" class="fb-like" id="<?php echo $likeId; ?>">
                     <div class="icon-outline">
-                        <img src="./image/like.png" alt="like ico" class="ico-like" style="<?php $likeDislike = 1 ? "opacity: 1" : $likeDislike = 0 ? "opacity: 0.5" : "opacity: 0.5" ?>" />
+                        <img src="./image/like.png" alt="like ico" class="ico-like" style="<?php if (!$likeCheck['like'] = 0) {
+                                                                                                echo "opacity: 0.5";
+                                                                                            } else {
+                                                                                                echo "opacity: 1";
+                                                                                            } ?>" />
                     </div>
                     <p class="fb-like-label"><?php echo $countLikeNum; ?></p>
                 </button>
 
+                <?php
+                $dislikeId = $postRow['feedback_id'];;
+                ?>
                 <!--Dislike press-->
-                <button type="submit" class="fb-dislike">
+                <button type="button" class="fb-dislike" id="<?php echo $dislikeId; ?>">
                     <div class="icon-outline">
-                        <img src="./image/like.png" alt="dislike ico" class="ico-dislike" style="<?php $likeDislike = 1 ? "opacity: 1" : $likeDislike = 0 ? "opacity: 0.5" : "opacity: 0.5" ?>" />
+                        <img src="./image/like.png" alt="dislike ico" class="ico-dislike" style="<?php if (!$likeCheck['dislike'] = 0) {
+                                                                                                        echo "opacity: 0.5";
+                                                                                                    } else {
+                                                                                                        echo "opacity: 1";
+                                                                                                    } ?>" />
                     </div>
                     <p class="fb-dislike-label"><?php echo $countDislikeNum; ?></p>
                 </button>
                 <!--Comment press-->
-                <div class="fb-cmt" onclick="showCmt()">
+                <div class="fb-cmt" id="">
                     <div class="icon-outline">
                         <img src="./image/comment.png" alt="comment ico" class="ico-like" />
                     </div>
@@ -111,20 +124,43 @@ while ($postRow = mysqli_fetch_array($fbPost, MYSQLI_ASSOC)) {
             <?php } ?>
         </div>
         <script>
-            $("#<?php echo $showId; ?>").click(() => {
-                var txtHeight = $("#<?php echo $textParaId; ?>").height();
-                $("#<?php echo $paraId; ?>").animate({
-                    height: txtHeight
+            $(document).ready(function() {
+                $("#<?php echo $showId; ?>").click(() => {
+                    var txtHeight = $("#<?php echo $textParaId; ?>").height();
+                    $("#<?php echo $paraId; ?>").animate({
+                        height: txtHeight
+                    });
+                    $("#<?php echo $showId; ?>").hide();
+                    $("#<?php echo $hideId; ?>").show();
                 });
-                $("#<?php echo $showId; ?>").hide();
-                $("#<?php echo $hideId; ?>").show();
-            });
 
-            $("#<?php echo $hideId; ?>").click(() => {
-                $("#<?php echo $paraId; ?>").css("height", "100px");
-                $("#<?php echo $showId; ?>").show();
-                $("#<?php echo $hideId; ?>").hide();
-            });
+                $("#<?php echo $hideId; ?>").click(() => {
+                    $("#<?php echo $paraId; ?>").css("height", "100px");
+                    $("#<?php echo $showId; ?>").show();
+                    $("#<?php echo $hideId; ?>").hide();
+                });
+                if ($(window).width() < 900) {
+                    $(".hide-cmt").click(() => {
+                        $(".fb-comment").slideDown();
+                    });
+                    $(".fb-cmt").click(() => {
+                        $(".fb-comment").slideUp();
+                    });
+                } else {
+                    $(".fb-comment").show();
+                }
+
+                $("#<?php echo $likeId; ?>").click(() => {
+                    $.post({
+                        url: "likePress.php",
+                        type: "POST",
+                        data: "type=like$id" + $likeId,
+                        success: function(result) {
+                            console.log("Liked", result);
+                        }
+                    })
+                })
+            })
         </script>
     </form>
 <?php } ?>
