@@ -39,7 +39,7 @@
   /* border: 1px solid #000; */
   margin: clamp(calc(var(--rem-05) + 0.15vw), 0.5vw, calc(var(--rem-05) + 1vw));
   overflow-y: scroll;
-  scrollbar-width: thin;
+  scrollbar-width: none;
   height: 100%;
   width: 100%;
 }
