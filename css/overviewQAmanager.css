@@ -1,6 +1,5 @@
 @import "./root.css";
-
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -11,7 +10,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 100svh;
+    /* height: 100svh; */
     overflow-y: scroll;
     padding: clamp(calc(var(--rem-15) + 0.5vw), 1.5vw, calc(var(--rem-2) + 1.5vw)) clamp(calc(var(--rem-3) + 0.5vw), 15vw, calc(var(--rem-3) + 1vw));
     font-family: sans-serif;
@@ -46,7 +45,7 @@
     font-weight: bold;
     text-transform: uppercase;
     text-decoration-line: underline;
-    border-bottom: 1px solid  var(--light-blue-purple);
+    border-bottom: 1px solid var(--light-blue-purple);
     margin: 0 3%;
     padding: 1.5% 0;
     justify-content: center;
@@ -61,7 +60,8 @@
     margin: 0 3%;
 }
 
-.row1, .row3 {
+.row1,
+.row3 {
     padding: 3% 0;
 }
 
@@ -150,13 +150,12 @@
     white-space: nowrap;
 }
 
-@media screen and (max-width: 1150px){
+@media screen and (max-width: 1150px) {
     .row3 {
         flex-direction: column;
         align-items: flex-start;
         padding-top: 0;
     }
-
     .row3-col1-title,
     .row3-col2-title,
     .row3-col1-value,
@@ -165,8 +164,8 @@
     }
 }
 
-@media screen and (max-width: 600px){
-    .departmentName-container{
+@media screen and (max-width: 600px) {
+    .departmentName-container {
         max-width: 100%;
     }
 }
