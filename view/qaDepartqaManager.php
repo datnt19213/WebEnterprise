@@ -6,12 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/root.css">
-    <link rel="stylesheet" href="../css/qaDepartqaManager.css">
-    <link rel="stylesheet" href="../css/feedbackCreate.css" />
+     <link rel="stylesheet" href="../css/qaDepartqaManager.css">
+    <!-- <link rel="stylesheet" href="../css/feedbackCreate.css" /> -->
     <!-- <link rel="stylesheet" href="../css/adminQaFeedbackManagement.css" /> -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> -->    
-    <script type="text/javascript" src="filter/showFilter.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>     -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js" integrity="sha512-bztGAvCE/3+a1Oh0gUro7BHukf6v7zpzrAb3ReWAVrt+bVNNphcl2tDTKCBr5zk7iEDmQ2Bv401fX3jeVXGIcA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> -->
+
 </head>
 
 <body>
@@ -19,7 +21,6 @@
         session_start();
         include_once("../data/connection.php");
 
-        $filter = mysqli_query($conn, "SELECT * FROM filter_tb");
         $result = mysqli_query($conn, "SELECT * FROM department_tb");
     ?>
 
@@ -28,25 +29,33 @@
             <!-- <header class="header">QA Departments Management</header> -->
             <p class="ad-qa-mn-title">QA Departments Management</p>
 
-            <div class="filter-btn">
+            <!-- <form method="POST" enctype="multipart/form-data" class="filter-btn">
                 Filter&nbsp;
                 <img src="./image/filter.png" alt="filter-img" />
-                <select class="option-list-cate filter-fb" id="mySelect" name="mySelect" onchange="selectFilter()">
+                <select class="option-list-cate filter-fb" id="mySelection" name="mySelect">
                     <option value="0" selected>All</option>
                     <option value="1">Most Like</option>
                     <option value="2">Most Dislike</option>
                     <option value="3">Most Comment</option>
                     <option value="4">Newest</option>
                     <option value="5">Ended</option>
-                    <!-- <?php
-                        while ($row = mysqli_fetch_array($filter, MYSQLI_ASSOC)){
-                    ?>
-                        <option value=<?php echo $row['filter_id']?>><?php echo $row['filter_name'];?></option>
-                    <?php
-                        }
-                    ?> -->
                 </select>
-            </div>
+
+                <script>
+                    $("#mySelection").change(function (e) { 
+                        e.preventDefault();
+                        var selectVal = $("#mySelection").val();
+                        $.post({
+                            url: "./controller/showFilter.php",
+                            type: "POST",
+                            data: "id="+selectVal,
+                            success: function (data) {
+                                $("#showFilterData").html(data);   
+                            }
+                        });
+                    });
+                </script> -->
+            </form>
         </div>
 
         <div class="qa-ad-scroll-table">
@@ -59,55 +68,32 @@
             </div>
 
             <div class="y-scroll-tb-data">
-                <div class="qa-ad-fb-tbody" id="showFilterData">
-                    <div class="qa-ad-tbody-cell" title="department_name">
-                        <p>department_name</p>
+                <?php
+                    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+                    {
+                ?>
+                    <div class="qa-ad-fb-tbody">
+                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['department_name'];?>">
+                            <p><?php echo  $row['department_name'];?></p>
+                        </div>
+                        
+                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['department_name'];?>">
+                            <p><?php echo  $row['department_name'];?></p>
+                        </div>
+                        
+                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['department_name'];?>">
+                            <p><?php echo  $row['department_name'];?></p>
+                        </div>
+                        
+                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['department_name'];?>">
+                            <p><?php echo  $row['department_name'];?></p>
+                        </div>
                     </div>
-                    <div class="qa-ad-tbody-cell" title="department_name">
-                        <p>department_name</p>
-                    </div>
-                    
-                    <div class="qa-ad-tbody-cell" title="department_name">
-                        <p>department_name</p>
-                    </div>
-                    
-                    <div class="qa-ad-tbody-cell" title="department_name">
-                        <p>department_name</p>
-                    </div>
-
-
-                    <!-- <div class="qa-ad-tbody-cell" title="<?php echo  $row['department_name'];?>">
-                        <p><?php echo  $row['department_name'];?></p>
-                    </div>
-
-                    <div class="qa-ad-tbody-cell" title="<?php echo  $row['department_name'];?>">
-                        <p><?php echo  $row['department_name'];?></p>
-                    </div>
-
-                    <div class="qa-ad-tbody-cell" title="<?php echo  $row['department_name'];?>">
-                        <p><?php echo  $row['department_name'];?></p>
-                    </div>
-
-                    <div class="qa-ad-tbody-cell" title="<?php echo  $row['department_name'];?>">
-                        <p><?php echo  $row['department_name'];?></p>
-                    </div> -->
-                </div>
+                <?php
+                    }
+                ?>
             </div>
         </div>
-        <!-- <div class="tableManagement" id="tableManagement">
-            <div class="thead">
-                <div class="tbTitle">Department name</div>
-                <div class="tbTitle">Description</div>
-                <div class="tbTitle">Staff</div>
-                <div class="tbTitle">Feedback</div>
-            </div>
-
-            <div class="tbody" id="showFilterData"></div>
-                <div class="tbBody" name="departmentName"><?php echo  $row['department_name'];?></div>
-                <div class="tbBody" name="description"><?php echo  $row['department_desc'];?></div>
-                <div class="tbBody" name="staff"><?php echo  $row['department_name'];?></div>
-                <div class="tbBody" name="feedback"><?php echo  $row['state_code'];?></div>
-        </div> -->
     </div>
 </body>
 </html>

@@ -9,39 +9,45 @@
 </head>
 
 <body>
+    <!-- <div class="scroll-overview" style="overflows: scroll"> -->
     <?php
         session_start();
         include_once("../data/connection.php");
-        $result = mysqli_query($conn, "SELECT * FROM department_tb, feedback_tb, comment_tb
-                                        WHERE department_tb.department_id = feedback_tb.department_id AND 
-                                        comment_tb.comment_id = feedback_tb.comment_id");
-        $tFeedback = mysqli_query($conn, "SELECT * FROM feedback_tb");
+
+        $result = mysqli_query($conn, "SELECT * FROM department_tb");
+
+        // $result = mysqli_query($conn, "SELECT * FROM department_tb, feedback_tb, comment_tb
+        //                                 WHERE department_tb.department_id = feedback_tb.department_id AND 
+        //                                 comment_tb.comment_id = feedback_tb.comment_id");
+        $tFeedback = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM feedback_tb"));
 
         $tUser = mysqli_query($conn, "SELECT * FROM user_tb");
 
-        $perFeedback = (mysqli_num_rows($tFeedback) / mysqli_num_rows($tUser)) * 100;
+        $perFeedback = mysqli_num_rows($tUser) / $tFeedback * 100;
+        $perFeedback = round($perFeedback, 1);
 
-        $tContributor = mysqli_num_rows(mysqli_query($conn, "SELECT DISTINCT email FROM comment_tb"));
+        $tContributor = mysqli_num_rows(mysqli_query($conn, "SELECT DISTINCT email FROM feedback_tb"));
 
         $tFeedbackWithoutComment = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM feedback_tb a, comment_tb b WHERE a.comment_id = b.comment_id AND a.comment_id = NULL"));
 
-        $tAnonymousFeedback = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM feedback_tb WHERE post_state = 0"));
+        $tAnonymousFeedback = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM feedback_tb WHERE post_state = 1"));
 
-        $tAnonymousComment = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM comment_tb WHERE state_code = 0"));
+        $tAnonymousComment = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM comment_tb WHERE state_code = 1"));
 
         if (!$result)
         {
             die('Invalid query: ' . mysqli_error($conn));
         }
 
-        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+        
+        while ($rows = mysqli_fetch_array($result, MYSQLI_ASSOC))
         {
-    ?>
+            ?>
 
         <div class="departmentItem">
             <div class="departmentName-container">
 
-                <header class="header" name="departmentName"><?php echo  $row['department_name'];?></header>
+                <header class="header" name="departmentName"><?php echo  $rows['department_name'];?></header>
 
                 <div class="content">
                     <div class="row1">
@@ -84,6 +90,7 @@
     <?php
         }
     ?>
+    <!-- </div> -->
 </body>
 
 </html>
