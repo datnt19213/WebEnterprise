@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/root.css">
-     <link rel="stylesheet" href="../css/qaDepartqaManager.css">
+    <link rel="stylesheet" href="../css/qaDepartqaManager.css">
     <!-- <link rel="stylesheet" href="../css/feedbackCreate.css" /> -->
     <!-- <link rel="stylesheet" href="../css/adminQaFeedbackManagement.css" /> -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>     -->
@@ -54,8 +54,8 @@
                             }
                         });
                     });
-                </script> -->
-            </form>
+                </script> 
+            </form>-->
         </div>
 
         <div class="qa-ad-scroll-table">
@@ -64,7 +64,7 @@
                 <div class="qa-ad-thead-cell">Department name</div>
                 <div class="qa-ad-thead-cell">Description</div>
                 <div class="qa-ad-thead-cell">Staff</div>
-                <div class="qa-ad-thead-cell">Document</div>
+                <div class="qa-ad-thead-cell">Feedback</div>
             </div>
 
             <div class="y-scroll-tb-data">
