@@ -243,8 +243,8 @@
 
 .footer {
   position: absolute;
-  top: 0;
-  display: flex;
+  bottom: 0;
+  display: none;
   flex-direction: row;
   justify-content: center;
   align-items: center;
