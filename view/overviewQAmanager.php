@@ -28,7 +28,7 @@
 
         $tContributor = mysqli_num_rows(mysqli_query($conn, "SELECT DISTINCT email FROM feedback_tb"));
 
-        $tFeedbackWithoutComment = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM feedback_tb a, comment_tb b WHERE a.comment_id = b.comment_id AND a.comment_id = NULL"));
+        $tFeedbackWithoutComment = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM feedback_tb a, comment_tb b WHERE a.feedback_id = b.feedback_id AND a.feedback_id = NULL"));
 
         $tAnonymousFeedback = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM feedback_tb WHERE post_state = 1"));
 
