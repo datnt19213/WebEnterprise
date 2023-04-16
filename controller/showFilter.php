@@ -2,185 +2,304 @@
     include_once("../data/connection.php");
 
     $filterId = $_POST['id'];
-    if($filterId == "all"){
-        $filterRes = mysqli_query($conn, "SELECT * FROM feedback_tb, user_tb, category_tb, contact_tb, comment_tb 
-        WHERE feedback_tb.feedback_id = contact_tb.feedback_id 
-        AND feedback_tb.email = user_tb.email 
-        AND feedback_tb.category_id = category_tb.category_id
-        AND feedback_tb.feedback_id = comment_tb.feedback_id");
+    if ($filterId == "all") {
+        $filterRes = mysqli_query($conn, "SELECT user_tb.fullname AS Author, feedback_tb.feedback_content AS Content, category_tb.category_name AS Category, feedback_tb.document AS Document, feedback_tb.ended_date AS Deadline, COUNT(contact_tb.like) AS total_likes, COUNT(contact_tb.dislike) AS total_dislikes, COUNT(comment_tb.comment_id) AS total_comments
+        FROM feedback_tb
+        JOIN user_tb ON feedback_tb.email = user_tb.email
+        JOIN category_tb ON feedback_tb.category_id = category_tb.category_id
+        LEFT JOIN contact_tb ON feedback_tb.feedback_id = contact_tb.feedback_id 
+        LEFT JOIN comment_tb ON feedback_tb.feedback_id = comment_tb.feedback_id
+        GROUP BY feedback_tb.feedback_id");
+
         while ($row = mysqli_fetch_array($filterRes, MYSQLI_ASSOC))
         {
-?>
+    ?>
         <div class="qa-ad-fb-tbody">
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['email'];?>">
-                <p><?php echo  $row['email'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo $row['Author'];?>">
+                <p><?php echo $row['Author'];?></p>
             </div>
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['feedback_content'];?>">
-                <p><?php echo  $row['feedback_content'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Content'];?>">
+                <p><?php echo  $row['Content'];?></p>
             </div>
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['category_name'];?>">
-                <p><?php echo  $row['category_name'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Category'];?>">
+                <p><?php echo  $row['Category'];?></p>
             </div>
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['document'];?>">
-                <p><?php echo  $row['document'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Document'];?>">
+                <p><?php echo  $row['Document'];?></p>
             </div>
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['started_date'];?>">
-                <p><?php echo  $row['started_date'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Deadline'];?>">
+                <p><?php echo  $row['Deadline'];?></p>
             </div>
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['like'];?>">
-                <p><?php echo  $row['like'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['total_likes'];?>">
+                <p><?php echo $row['total_likes']==0 ? 0 : $row['total_likes'];?></p>
             </div>
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['dislike'];?>">
-                <p><?php echo  $row['dislike'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['total_dislikes'];?>">
+                <p><?php echo  $row['total_dislikes']==0 ? 0 : $row['total_dislikes'];?></p>
             </div>
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['comment'];?>">
-                <p><?php echo  $row['comment'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['total_comments'];?>">
+                <p><?php echo  $row['total_comments']==0 ? 0 : $row['total_comments'];?></p>
+            </div>
             </div>
         </div>
 <?php
         }
     }
     elseif($filterId == "like"){
-        $sql = "SELECT feedback_tb.feedback_id, feedback_tb.*, SUM(contact_tb.like) as total_likes FROM feedback_tb
-            INNER JOIN contact_tb ON feedback_tb.feedback_id = contact_tb.feedback_id GROUP BY feedback_tb.feedback_id
-            ORDER BY total_likes DESC LIMIT 10";
+        $filterRes = mysqli_query($conn, "SELECT 
+            user_tb.fullname AS Author, 
+            feedback_tb.feedback_content AS Content, 
+            category_tb.category_name AS Category, 
+            feedback_tb.document AS Document, 
+            feedback_tb.ended_date AS Deadline,
+            SUM(contact_tb.like) AS total_likes, 
+            SUM(contact_tb.dislike) AS total_dislikes, 
+            COUNT(comment_tb.feedback_id) AS total_comments
+        FROM feedback_tb
+        JOIN user_tb ON feedback_tb.email=user_tb.email
+        JOIN category_tb ON feedback_tb.category_id=category_tb.category_id
+        LEFT JOIN contact_tb ON feedback_tb.feedback_id=contact_tb.feedback_id
+        LEFT JOIN comment_tb ON feedback_tb.feedback_id=comment_tb.feedback_id AND comment_tb.state_code=1
+        GROUP BY feedback_tb.feedback_id
+        ORDER BY total_likes DESC");
 
-        $filterRes = mysqli_query($conn, $sql);
-        
+        // $filterRes = mysqli_query($conn, $sql);
+
         while($row = mysqli_fetch_array($filterRes, MYSQLI_ASSOC)){
+            // $tLike = mysqli_query($conn, "SELECT COUNT(like) FROM contact_tb GROUP BY contact_tb.feedback_id");
             
 ?>
         <div class="qa-ad-fb-tbody">
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['feedback_id'];?>">
-                <p><?php echo  $row['feedback_id'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo $row['Author'];?>">
+                <p><?php echo $row['Author'];?></p>
             </div>
-            
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['feedback_id'];?>">
-                <p><?php echo  $row['feedback_id'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Content'];?>">
+                <p><?php echo  $row['Content'];?></p>
             </div>
-            
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['feedback_id'];?>">
-                <p><?php echo  $row['feedback_id'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Category'];?>">
+                <p><?php echo  $row['Category'];?></p>
             </div>
-            
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['feedback_id'];?>">
-                <p><?php echo  $row['feedback_id'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Document'];?>">
+                <p><?php echo  $row['Document'];?></p>
+            </div>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Deadline'];?>">
+                <p><?php echo  $row['Deadline'];?></p>
+            </div>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['total_likes'];?>">
+                <p><?php echo $row['total_likes']==0 ? 0 : $row['total_likes'];?></p>
+            </div>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['total_dislikes'];?>">
+                <p><?php echo  $row['total_dislikes']==0 ? 0 : $row['total_dislikes'];?></p>
+            </div>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['total_comments'];?>">
+                <p><?php echo  $row['total_comments']==0 ? 0 : $row['total_comments'];?></p>
             </div>
         </div>
 <?php
 }
     }
     elseif($filterId == "dislike"){
-        $sql = "SELECT feedback_tb.feedback_id, feedback_tb.*, SUM(contact_tb.dislike) as total_dislikes FROM feedback_tb
-            INNER JOIN contact_tb ON feedback_tb.feedback_id = contact_tb.feedback_id GROUP BY feedback_tb.feedback_id
-            ORDER BY total_dislikes DESC LIMIT 10";
+        $filterRes = mysqli_query($conn, "SELECT 
+            user_tb.fullname AS Author, 
+            feedback_tb.feedback_content AS Content, 
+            category_tb.category_name AS Category, 
+            feedback_tb.document AS Document, 
+            feedback_tb.ended_date AS Deadline,
+            SUM(contact_tb.like) AS total_likes, 
+            SUM(contact_tb.dislike) AS total_dislikes, 
+            COUNT(comment_tb.feedback_id) AS total_comments
+        FROM feedback_tb
+        JOIN user_tb ON feedback_tb.email=user_tb.email
+        JOIN category_tb ON feedback_tb.category_id=category_tb.category_id
+        LEFT JOIN contact_tb ON feedback_tb.feedback_id=contact_tb.feedback_id
+        LEFT JOIN comment_tb ON feedback_tb.feedback_id=comment_tb.feedback_id AND comment_tb.state_code=1
+        GROUP BY feedback_tb.feedback_id
+        ORDER BY total_dislikes DESC");
 
-        $filterRes = mysqli_query($conn, $sql);
-        
+        // $filterRes = mysqli_query($conn, $sql);
+
         while($row = mysqli_fetch_array($filterRes, MYSQLI_ASSOC)){
+            // $tLike = mysqli_query($conn, "SELECT COUNT(like) FROM contact_tb GROUP BY contact_tb.feedback_id");
             
 ?>
         <div class="qa-ad-fb-tbody">
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['feedback_id'];?>">
-                <p><?php echo  $row['feedback_id'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo $row['Author'];?>">
+                <p><?php echo $row['Author'];?></p>
             </div>
-            
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['feedback_id'];?>">
-                <p><?php echo  $row['feedback_id'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Content'];?>">
+                <p><?php echo  $row['Content'];?></p>
             </div>
-            
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['feedback_id'];?>">
-                <p><?php echo  $row['feedback_id'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Category'];?>">
+                <p><?php echo  $row['Category'];?></p>
             </div>
-            
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['feedback_id'];?>">
-                <p><?php echo  $row['feedback_id'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Document'];?>">
+                <p><?php echo  $row['Document'];?></p>
+            </div>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Deadline'];?>">
+                <p><?php echo  $row['Deadline'];?></p>
+            </div>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['total_likes'];?>">
+                <p><?php echo $row['total_likes']==0 ? 0 : $row['total_likes'];?></p>
+            </div>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['total_dislikes'];?>">
+                <p><?php echo  $row['total_dislikes']==0 ? 0 : $row['total_dislikes'];?></p>
+            </div>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['total_comments'];?>">
+                <p><?php echo  $row['total_comments']==0 ? 0 : $row['total_comments'];?></p>
             </div>
         </div>
 <?php
 }
     }
     elseif($filterId == "comment"){
-        $sql = "SELECT feedback_tb.feedback_id, feedback_tb.feedback_content, COUNT(comment_tb.comment_id) as total_comments FROM feedback_tb
-            INNER JOIN comment_tb ON feedback_tb.feedback_id = comment_tb.feedback_id WHERE comment_tb.state_code = 1 GROUP BY feedback_tb.feedback_id
-            ORDER BY total_comments DESC LIMIT 10;";
+        $filterRes = mysqli_query($conn, "SELECT 
+            user_tb.fullname AS Author, 
+            feedback_tb.feedback_content AS Content, 
+            category_tb.category_name AS Category, 
+            feedback_tb.document AS Document, 
+            feedback_tb.ended_date AS Deadline,
+            SUM(contact_tb.like) AS total_likes, 
+            SUM(contact_tb.dislike) AS total_dislikes, 
+            COUNT(comment_tb.feedback_id) AS total_comments
+        FROM feedback_tb
+        JOIN user_tb ON feedback_tb.email=user_tb.email
+        JOIN category_tb ON feedback_tb.category_id=category_tb.category_id
+        LEFT JOIN contact_tb ON feedback_tb.feedback_id=contact_tb.feedback_id
+        LEFT JOIN comment_tb ON feedback_tb.feedback_id=comment_tb.feedback_id AND comment_tb.state_code=1
+        GROUP BY feedback_tb.feedback_id
+        ORDER BY total_comments DESC");
 
-        $filterRes = mysqli_query($conn, $sql);
-        
+        // $filterRes = mysqli_query($conn, $sql);
+
         while($row = mysqli_fetch_array($filterRes, MYSQLI_ASSOC)){
+            // $tLike = mysqli_query($conn, "SELECT COUNT(like) FROM contact_tb GROUP BY contact_tb.feedback_id");
             
 ?>
         <div class="qa-ad-fb-tbody">
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['feedback_id'];?>">
-                <p><?php echo  $row['feedback_id'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo $row['Author'];?>">
+                <p><?php echo $row['Author'];?></p>
             </div>
-            
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['feedback_id'];?>">
-                <p><?php echo  $row['feedback_id'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Content'];?>">
+                <p><?php echo  $row['Content'];?></p>
             </div>
-            
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['feedback_id'];?>">
-                <p><?php echo  $row['feedback_id'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Category'];?>">
+                <p><?php echo  $row['Category'];?></p>
             </div>
-            
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['feedback_id'];?>">
-                <p><?php echo  $row['feedback_id'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Document'];?>">
+                <p><?php echo  $row['Document'];?></p>
+            </div>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Deadline'];?>">
+                <p><?php echo  $row['Deadline'];?></p>
+            </div>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['total_likes'];?>">
+                <p><?php echo $row['total_likes']==0 ? 0 : $row['total_likes'];?></p>
+            </div>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['total_dislikes'];?>">
+                <p><?php echo  $row['total_dislikes']==0 ? 0 : $row['total_dislikes'];?></p>
+            </div>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['total_comments'];?>">
+                <p><?php echo  $row['total_comments']==0 ? 0 : $row['total_comments'];?></p>
             </div>
         </div>
 <?php
 }
     }
     elseif($filterId == "new"){
-        $sql = "SELECT * FROM feedback_tb WHERE started_date <= CURDATE() ORDER BY started_date DESC LIMIT 10";
-
-        $filterRes = mysqli_query($conn, $sql);
+        $filterRes = mysqli_query($conn, "SELECT 
+            user_tb.fullname AS Author, 
+            feedback_tb.feedback_content AS Content, 
+            category_tb.category_name AS Category, 
+            feedback_tb.document AS Document, 
+            feedback_tb.ended_date AS Deadline,
+            SUM(contact_tb.like) AS total_likes,
+            SUM(contact_tb.dislike) AS total_dislikes,
+            COUNT(comment_tb.comment_id) AS total_comments,
+            DATEDIFF(feedback_tb.ended_date, NOW()) AS DaysToDeadline
+        FROM feedback_tb
+        JOIN user_tb ON feedback_tb.email=user_tb.email
+        JOIN category_tb ON feedback_tb.category_id=category_tb.category_id
+        LEFT JOIN contact_tb ON feedback_tb.feedback_id=contact_tb.feedback_id
+        LEFT JOIN comment_tb ON feedback_tb.feedback_id=comment_tb.feedback_id AND comment_tb.state_code=1
+        GROUP BY feedback_tb.feedback_id
+        ORDER BY DaysToDeadline DESC");
         
         while($row = mysqli_fetch_array($filterRes, MYSQLI_ASSOC)){
             
 ?>
         <div class="qa-ad-fb-tbody">
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['feedback_id'];?>">
-                <p><?php echo  $row['feedback_id'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo $row['Author'];?>">
+                <p><?php echo $row['Author'];?></p>
             </div>
-            
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['feedback_id'];?>">
-                <p><?php echo  $row['feedback_id'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Content'];?>">
+                <p><?php echo  $row['Content'];?></p>
             </div>
-            
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['feedback_id'];?>">
-                <p><?php echo  $row['feedback_id'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Category'];?>">
+                <p><?php echo  $row['Category'];?></p>
             </div>
-            
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['feedback_id'];?>">
-                <p><?php echo  $row['feedback_id'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Document'];?>">
+                <p><?php echo  $row['Document'];?></p>
+            </div>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Deadline'];?>">
+                <p><?php echo  $row['Deadline'];?></p>
+            </div>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['total_likes'];?>">
+                <p><?php echo $row['total_likes']==0 ? 0 : $row['total_likes'];?></p>
+            </div>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['total_dislikes'];?>">
+                <p><?php echo  $row['total_dislikes']==0 ? 0 : $row['total_dislikes'];?></p>
+            </div>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['total_comments'];?>">
+                <p><?php echo  $row['total_comments']==0 ? 0 : $row['total_comments'];?></p>
             </div>
         </div>
 <?php
 }
     }
     elseif($filterId == "end"){
-        $sql = "SELECT * FROM feedback_tb WHERE ended_date <= CURDATE() ORDER BY ended_date ASC LIMIT 10";
-
-        $filterRes = mysqli_query($conn, $sql);
+        $filterRes = mysqli_query($conn, "SELECT 
+            user_tb.fullname AS Author, 
+            feedback_tb.feedback_content AS Content, 
+            category_tb.category_name AS Category, 
+            feedback_tb.document AS Document, 
+            feedback_tb.ended_date AS Deadline,
+            SUM(contact_tb.like) AS total_likes,
+            SUM(contact_tb.dislike) AS total_dislikes,
+            COUNT(comment_tb.comment_id) AS total_comments,
+            DATEDIFF(feedback_tb.ended_date, NOW()) AS DaysToDeadline
+        FROM feedback_tb
+        JOIN user_tb ON feedback_tb.email=user_tb.email
+        JOIN category_tb ON feedback_tb.category_id=category_tb.category_id
+        LEFT JOIN contact_tb ON feedback_tb.feedback_id=contact_tb.feedback_id
+        LEFT JOIN comment_tb ON feedback_tb.feedback_id=comment_tb.feedback_id AND comment_tb.state_code=1
+        GROUP BY feedback_tb.feedback_id
+        ORDER BY DaysToDeadline ASC");
         
         while($row = mysqli_fetch_array($filterRes, MYSQLI_ASSOC)){
             
 ?>
         <div class="qa-ad-fb-tbody">
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['feedback_id'];?>">
-                <p><?php echo  $row['feedback_id'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo $row['Author'];?>">
+                <p><?php echo $row['Author'];?></p>
             </div>
-            
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['feedback_id'];?>">
-                <p><?php echo  $row['feedback_id'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Content'];?>">
+                <p><?php echo  $row['Content'];?></p>
             </div>
-            
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['feedback_id'];?>">
-                <p><?php echo  $row['feedback_id'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Category'];?>">
+                <p><?php echo  $row['Category'];?></p>
             </div>
-            
-            <div class="qa-ad-tbody-cell" title="<?php echo  $row['feedback_id'];?>">
-                <p><?php echo  $row['feedback_id'];?></p>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Document'];?>">
+                <p><?php echo  $row['Document'];?></p>
+            </div>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['Deadline'];?>">
+                <p><?php echo  $row['Deadline'];?></p>
+            </div>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['total_likes'];?>">
+                <p><?php echo $row['total_likes']==0 ? 0 : $row['total_likes'];?></p>
+            </div>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['total_dislikes'];?>">
+                <p><?php echo  $row['total_dislikes']==0 ? 0 : $row['total_dislikes'];?></p>
+            </div>
+            <div class="qa-ad-tbody-cell" title="<?php echo  $row['total_comments'];?>">
+                <p><?php echo  $row['total_comments']==0 ? 0 : $row['total_comments'];?></p>
             </div>
         </div>
 <?php
