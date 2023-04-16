@@ -11,7 +11,7 @@
     align-items: center;
     width: 100%;
     /* height: 100svh; */
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     padding: clamp(calc(var(--rem-15) + 0.5vw), 1.5vw, calc(var(--rem-2) + 1.5vw)) clamp(calc(var(--rem-3) + 0.5vw), 15vw, calc(var(--rem-3) + 1vw));
     font-family: sans-serif;
     gap: 5%;
@@ -28,6 +28,11 @@
     user-select: none;
     cursor: pointer;
     max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 0.5vw;
 }
 
 .departmentName-container:hover {
@@ -41,12 +46,11 @@
 
 .header {
     width: 94%;
-    font-size: clamp(var(--rem-15), 2vw, var(--rem-25));
+    font-size: clamp(calc(var(--rem-1) + 0.5vw), 2vw, var(--rem-2));
     font-weight: bold;
     text-transform: uppercase;
     text-decoration-line: underline;
     border-bottom: 1px solid var(--light-blue-purple);
-    margin: 0 3%;
     padding: 1.5% 0;
     justify-content: center;
     text-align: center;

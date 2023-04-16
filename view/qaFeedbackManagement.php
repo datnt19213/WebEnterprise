@@ -16,21 +16,43 @@
     <div class="title-contact-btn">
       <p class="ad-qa-mn-title">Feedback Management</p>
       <div class="ad-qa-mn-btn">
-        <div class="filter-btn">
+        <form method="POST" enctype="multipart/form-data" class="filter-btn">
           Filter&nbsp;
           <img src="./image/filter.png" alt="filter-img" />
-          <select name="" id="" class="option-list-cate filter-fb" required>
-            <option value="0" selected>All</option>
-            <option value="1">Most Like</option>
-            <option value="2">Most Dislike</option>
-            <option value="3">Most Comment</option>
-            <option value="4">Newest</option>
-            <option value="5">Ended</option>
+          <select name="" id="mySelection" class="option-list-cate filter-fb" required>
+            <option value="all" selected>All</option>
+            <option value="like">Most Like</option>
+            <option value="dislike">Most Dislike</option>
+            <option value="comment">Most Comment</option>
+            <option value="new">Newest</option>
+            <option value="end">Ended</option>
           </select>
-        </div>
-        <button type="submit" class="ad-qa-mn-download">Download</button>
+
+          <script>
+            $(document).ready(function() {
+              var selectVal = "all";
+              $("#showFilterData").load("./controller/showAllFeedback.php");
+
+              $("#mySelection").change(function (e) { 
+                e.preventDefault();
+                selectVal = $("#mySelection").val();
+                console.log(selectVal);
+                $.post({
+                    url: "./controller/showFilter.php",
+                    type: "POST",
+                    data: "id="+selectVal,
+                    success: function (data) {
+                        $("#showFilterData").html(data);   
+                    }
+                });
+            });
+          })
+          </script>
+        </form>
+        <a href="./controller/exportData.php" class="ad-qa-mn-download">Download</a>
       </div>
     </div>
+
     <div class="qa-ad-scroll-table">
       <div class="qa-ad-table-data">
         <div class="qa-ad-fb-thead">
@@ -43,269 +65,7 @@
           <div class="qa-ad-thead-cell">Dislike</div>
           <div class="qa-ad-thead-cell">Comment</div>
         </div>
-        <div class="y-scroll-tb-data">
-          <div class="qa-ad-fb-tbody">
-            <div class="qa-ad-tbody-cell" title="Author">
-              <p>Author</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Content">
-              <p>Content</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Category">
-              <p>Category</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Document">
-              <p>Document</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Deadline">
-              <p>Deadline</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Like">
-              <p>Like</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Dislike">
-              <p>Dislike</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Comment">
-              <p>Comment</p>
-            </div>
-          </div>
-          <div class="qa-ad-fb-tbody">
-            <div class="qa-ad-tbody-cell" title="Author">
-              <p>Author</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Content">
-              <p>Content</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Category">
-              <p>Category</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Document">
-              <p>Document</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Deadline">
-              <p>Deadline</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Like">
-              <p>Like</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Dislike">
-              <p>Dislike</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Comment">
-              <p>Commentaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-            </div>
-          </div>
-          <div class="qa-ad-fb-tbody">
-            <div class="qa-ad-tbody-cell" title="Author">
-              <p>Author</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Content">
-              <p>Content</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Category">
-              <p>Category</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Document">
-              <p>Document</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Deadline">
-              <p>Deadline</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Like">
-              <p>Like</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Dislike">
-              <p>Dislike</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Comment">
-              <p>Comment</p>
-            </div>
-          </div>
-          <div class="qa-ad-fb-tbody">
-            <div class="qa-ad-tbody-cell" title="Author">
-              <p>Author</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Content">
-              <p>Content</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Category">
-              <p>Category</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Document">
-              <p>Document</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Deadline">
-              <p>Deadline</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Like">
-              <p>Like</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Dislike">
-              <p>Dislike</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Comment">
-              <p>Comment</p>
-            </div>
-          </div>
-          <div class="qa-ad-fb-tbody">
-            <div class="qa-ad-tbody-cell" title="Author">
-              <p>Author</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Content">
-              <p>Content</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Category">
-              <p>Category</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Document">
-              <p>Document</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Deadline">
-              <p>Deadline</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Like">
-              <p>Like</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Dislike">
-              <p>Dislike</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Comment">
-              <p>Comment</p>
-            </div>
-          </div>
-          <div class="qa-ad-fb-tbody">
-            <div class="qa-ad-tbody-cell" title="Author">
-              <p>Author</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Content">
-              <p>Content</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Category">
-              <p>Category</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Document">
-              <p>Document</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Deadline">
-              <p>Deadline</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Like">
-              <p>Like</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Dislike">
-              <p>Dislike</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Comment">
-              <p>Comment</p>
-            </div>
-          </div>
-          <div class="qa-ad-fb-tbody">
-            <div class="qa-ad-tbody-cell" title="Author">
-              <p>Author</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Content">
-              <p>Content</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Category">
-              <p>Category</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Document">
-              <p>Document</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Deadline">
-              <p>Deadline</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Like">
-              <p>Like</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Dislike">
-              <p>Dislike</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Comment">
-              <p>Comment</p>
-            </div>
-          </div>
-          <div class="qa-ad-fb-tbody">
-            <div class="qa-ad-tbody-cell" title="Author">
-              <p>Author</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Content">
-              <p>Content</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Category">
-              <p>Category</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Document">
-              <p>Document</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Deadline">
-              <p>Deadline</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Like">
-              <p>Like</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Dislike">
-              <p>Dislike</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Comment">
-              <p>Comment</p>
-            </div>
-          </div>
-
-          <div class="qa-ad-fb-tbody">
-            <div class="qa-ad-tbody-cell" title="Author">
-              <p>Author</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Content">
-              <p>Content</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Category">
-              <p>Category</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Document">
-              <p>Document</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Deadline">
-              <p>Deadline</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Like">
-              <p>Like</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Dislike">
-              <p>Dislike</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Comment">
-              <p>Comment</p>
-            </div>
-          </div>
-          <div class="qa-ad-fb-tbody">
-            <div class="qa-ad-tbody-cell" title="Author">
-              <p>Author</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Content">
-              <p>Content</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Category">
-              <p>Category</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Document">
-              <p>Document</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Deadline">
-              <p>Deadline</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Like">
-              <p>Like</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Dislike">
-              <p>Dislike</p>
-            </div>
-            <div class="qa-ad-tbody-cell" title="Comment">
-              <p>Comment</p>
-            </div>
-          </div>
-        </div>
+        <div class="y-scroll-tb-data" id="showFilterData">
       </div>
     </div>
   </div>

@@ -19,11 +19,14 @@ include_once "../data/connection.php";
       <p class="title-right">Add Category</p>
       <input type="text" class="input-username" id="cate_name" name="cate_name" placeholder="Category Name" required />
       <input type="text" class="input-password" id="cate_des" name="cate_des" placeholder="Category Description" required />
-      <button type="submit" class="login-btn" id="submit" name="submit">Add</button>
+      <div class="buttonEdit" style="display: flex; flex-direction:row; gap: 1vw">
+        <button type="submit" class="login-btn" id="submit" name="Add">Add</button>
+        <button type="button" class="login-btn" id="cancelEdit">Cancel</button>
+      </div>
     </form>
   </div>
 <?php
-if (isset($_POST['submit'])) {
+if (isset($_POST['Add'])) {
   // Lấy dữ liệu từ biểu mẫu
   $cate_name = $_POST['cate_name'];
   $cate_des = $_POST['cate_des'];
@@ -36,7 +39,7 @@ if (isset($_POST['submit'])) {
   if ($insertUserQuery) {
     echo '<script>alert("Category added successfully")</script>';
   } else {
-    echo "error: " .mysqli_error($conn);
+    echo '<script>console.log("no data")</script>';
   }
 }
 ?>
