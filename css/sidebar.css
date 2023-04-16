@@ -159,7 +159,7 @@
 }
 
 .mn-data-content {
-  overflow-y: auto;
+  overflow-y: none;
   scrollbar-width: none;
 }
 
