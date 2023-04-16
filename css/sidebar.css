@@ -159,8 +159,8 @@
 }
 
 .mn-data-content {
-  overflow-y: scroll;
-  scrollbar-width: thin;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 
 .mn-data-content > p {

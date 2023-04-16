@@ -71,7 +71,7 @@ include_once("./data/connection.php");
               <p>QA Department</p>
             </a>
             <a href="./view/addUser.php" class="bar-category-nav" id="qa-depart-manage">
-              <p>Staffs</p>
+              <p>Users</p>
             </a>
           </div>
         ';
