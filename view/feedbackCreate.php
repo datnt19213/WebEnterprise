@@ -1,5 +1,16 @@
 <?php
+
+use PHPMailer\PHPMailer\SMTP;
+
 include_once("./data/connection.php");
+// session_start();
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require './phpmailer/src/Exception.php';
+require './phpmailer/src/PHPMailer.php';
+require './phpmailer/src/SMTP.php';
 ?>
 
 <!DOCTYPE html>
@@ -131,9 +142,54 @@ include_once("./data/connection.php");
           } else {
             // echo '<script>confirm("No document or error! Do you want to post this feedback the without this document file?")</script>';
             $insertFbCrea = mysqli_query($conn, "INSERT INTO feedback_tb (email, feedback_content, category_id, started_date, ended_date, post_state, position_id, department_id) VALUES ('$userEmail', '$fbCrea_contentFeedback', '$fbCrea_Cate', '$fbCreaStart_Date', '$fbCreaEnd_Date', '$fbCrea_TypePost', '$getPosUser', '$getDepUser')");
+
+
+
+
             if ($insertFbCrea) {
-              echo '<script>alert("Feedback Created")</script>';
-              echo '<meta http-equiv="refresh" content="0;URL=?page=create"/>';
+
+              $userEmail = $_SESSION['us'];
+              $userMailName = $_SESSION['fu'];
+              $subjectStr = 'Employee feedback posted';
+              $strNotify = 'Employee ' . $userMailName . ' has sent feedback to the system';
+              $fbCrea_contentFeedback;
+
+              try {
+                $mail = new PHPMailer(true);
+
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'fb.uni.azdash.smith@gmail.com';
+                $mail->Password = 'xrdbkcdrgbfyuowc';
+                $mail->SMTPSecure = 'tsl';
+                $mail->Port = 587;
+
+
+
+                $mail->setFrom('fb.uni.azdash.smith@gmail.com');
+
+                $mail->addAddress('fb.uni.stank.depart@gmail.com');
+
+                $mail->isHTML(true);
+
+                $mail->Subject = $subjectStr;
+
+                $mail->Body = $strNotify;
+
+                // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+
+                $mail->send();
+              } catch (Exception $e) {
+                echo '<script>alert("Feedback is not sending mail' . $e . '")</script>';
+              }
+
+              date_default_timezone_set('Asia/Ho_Chi_Minh');
+              $timeNotify = date("Y-m-d H:i:s");
+              $notifyStatus = "Received";
+
+              $insertNotify = mysqli_query($conn, "INSERT INTO notification_tb (email, notify_desc, notify_time, notify_status) VALUES ('$userEmail', '$strNotify', '$timeNotify', '$notifyStatus')");
+              echo '<script>alert("Feedback Posted"); document.location.href="index.php"</script>';
             } else {
               echo '<script>alert("Post Failed")</script>';
             }

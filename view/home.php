@@ -25,48 +25,46 @@ include_once("./data/connection.php");
         <div class="fb-list-scroll" id="loaderData">
 
           <script>
-            var p_num = 1;
+            var limit = 5;
+            var offset = 0;
             var isLoad = false;
-            toLoad();
 
-            const containerEl = document.getElementById('fb-list');
+            $(document).ready(function() {
+              toLoad(limit, offset);
+            })
 
-            containerEl.addEventListener('scroll', function() {
-              const scrollTop = containerEl.scrollTop;
-              const scrollHeight = containerEl.scrollHeight;
-              const clientHeight = containerEl.clientHeight;
-
-              if (scrollTop + clientHeight === scrollHeight) {
-                if (!isLoad) {
-                  toLoad();
+            $("#fb-list").scroll(function() {
+              if ($(this).scrollTop() + $(this).outerHeight() >= $(this).get(0).scrollHeight) {
+                console.log($(this).scrollTop());
+                console.log($(this).outerHeight());
+                console.log($(this).get(0).scrollHeight);
+                if (isLoad === false) {
+                  offset += limit;
+                  toLoad(limit, offset);
                 }
               }
-            });
+            })
 
-
-            // $("#loaderData").scroll(function() {
-            //   // if ($(".fb-list").scrollTop() + $(".fb-list").height() > $(".fb-view-container").height() + 1000) {
-            //   // if (!isLoad) {
-            //   toLoad();
-            //   // }
-            // })
-
-            function toLoad() {
+            function toLoad(limit, offset) {
               isLoad = true;
               $(".loader").show();
-              $.post("./controller/loadmore.php", {
-                p: p_num
-              }, (response) => {
-                $("#loaderData").append(response);
-                $(".loader").hide();
-                isLoad = false;
-                p_num++;
+              $.post({
+                url: "./controller/loadmore.php",
+                type: "POST",
+                data: {
+                  limit: limit,
+                  offset: offset,
+                },
+                success: (response) => {
+                  $("#loaderData").append(response);
+                  $(".loader").hide();
+                  isLoad = false;
+                }
               })
             }
           </script>
-
         </div>
-        <span class="loader" style="display: none;"></span>
+        <span class="loader" style="display: none"></span>
       </div>
       <!-- comment box -->
       <div class="fb-comment">
