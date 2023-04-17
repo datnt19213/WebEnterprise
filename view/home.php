@@ -67,46 +67,64 @@ include_once("./data/connection.php");
         <span class="loader" style="display: none"></span>
       </div>
       <!-- comment box -->
-      <div class="fb-comment">
+
+      <form method="post" enctype="multipart/form-data" class="fb-comment">
         <div class="hide-cmt">
           <p>Hide</p>
         </div>
-        <div class="list-comment">
-          <?php
-          $cmtQuery = mysqli_query($conn, "SELECT * FROM comment_tb, feedback_tb WHERE comment_tb.comment_id = feedback_tb.comment_id");
+        <div class="list-comment" id="cmtList">
+          <script>
+            function showComment() {
+              var id = localStorage.getItem("commentId")
+              console.log("SHOWED")
+              $.post({
+                url: "./controller/comment.php",
+                type: "POST",
+                data: {
+                  cmtId: id,
+                },
+                success: function(data) {
+                  $("#cmtList").html(data);
+                }
+              })
+            }
 
-          while ($cmtRow = mysqli_fetch_array($cmtQuery, MYSQLI_ASSOC)) {
-            $cmtUser = $cmtRow['email'];
-            $cmtState = $cmtRow['state_code'];
-            $cmtNonAnoQuery = mysqli_query($conn, "SELECT * FROM user_tb WHERE comment_tb.email = '$cmtUser' AND state_code = 1");
-            $cmtNonAno = mysqli_fetch_assoc($cmtNonAnoQuery);
-          ?>
-            <!-- comment list -->
-            <div class="comment-row">
-              <div class="cmt-avt">
-                <img src="<?php $cmtState = 1 ? $cmtNonAno['avatar'] : "./image/Anonymous.png" ?>" alt="Avatar" class="avt-comment" />
-              </div>
-              <div class="cmt-content">
-                <pre class="cmt-text"><?php echo $cmtRow['comment_content'] ?></pre>
-              </div>
-            </div>
-          <?php } ?>
+            function submitComment() {
+              var id = localStorage.getItem("commentId");
+              var cmtState = $("#cmtState").is(":checked") ? 1 : 0;
+              var cmtVal = $("#commentContent").val();
+              console.log(cmtState, cmtVal, id);
+              $.post({
+                url: "./controller/postComment.php",
+                type: "POST",
+                data: {
+                  postId: id,
+                  state: cmtState,
+                  content: cmtVal
+                },
+                success: function(data) {
+                  $("#cmtList").html(data);
+                }
+              })
+            }
+          </script>
         </div>
         <div class="post-comment">
-          <form action="" class="comment-form" method="post">
+          <div class="comment-form">
             <label for="" class="checkbox-label-post">
-              <input type="checkbox" class="check-box-terms" name="" value="check box" />
+              <input type="checkbox" class="check-box-terms" id="cmtState" name="" />
               <p class="terms-check">Comment As Anonymous</p>
             </label>
             <div class="cmt-box">
-              <input type="text" placeholder="Comment" class="comment-input" />
-              <button class="fb-send-comment">
+              <input type="text" placeholder="Comment Here" class="comment-input" id="commentContent" minlength="7" required />
+              <button type="button" class="fb-send-comment" onclick="submitComment()" id="sendComment">
                 <img src="./image/send.png" alt="Send" class="send-comment" />
               </button>
             </div>
-          </form>
+          </div>
         </div>
-      </div>
+      </form>
+
     </div>
   </div>
 </body>
