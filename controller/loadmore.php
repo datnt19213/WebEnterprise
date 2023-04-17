@@ -180,11 +180,14 @@ while ($postRow = mysqli_fetch_array($fbPost, MYSQLI_ASSOC)) {
 
                     $("#comment<?php echo $postRow['feedback_id'] ?>").click(() => {
                         localStorage.setItem("commentId", <?php echo $postRow['feedback_id']; ?>);
+                        localStorage.setItem("endTime", "<?php echo date('m/d/Y', strtotime($postRow['ended_date'])); ?>");
                         $.post({
                             url: "./view/home.php",
                             type: "POST",
                             success: function(response) {
                                 showComment();
+                                checkEndDate();
+
                             }
                         })
                     })
