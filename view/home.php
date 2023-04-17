@@ -74,6 +74,28 @@ include_once("./data/connection.php");
         </div>
         <div class="list-comment" id="cmtList">
           <script>
+            function checkEndDate() {
+              let endPost = localStorage.getItem("endTime");
+              let endDate = new Date(endPost);
+              let currentDate = new Date();
+
+              console.log("End date: " + endDate.toLocaleDateString());
+              console.log("Current date: " + currentDate.toLocaleDateString());
+
+              if (currentDate.getTime() < endDate.getTime()) {
+                $("#sendComment").prop("disabled", false);
+                $("#commentContent").prop("disabled", false);
+                $("#cmtState").prop("disabled", false);
+                console.log("The current date is before the end date.");
+              } else {
+                $("#sendComment").prop("disabled", true);
+                $("#commentContent").prop("disabled", true);
+                $("#cmtState").prop("disabled", true);
+                console.log("The current date is after the end date.");
+              }
+
+            }
+
             function showComment() {
               var id = localStorage.getItem("commentId")
               console.log("SHOWED")
