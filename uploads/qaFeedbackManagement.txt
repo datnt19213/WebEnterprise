@@ -16,7 +16,7 @@
     <div class="title-contact-btn">
       <p class="ad-qa-mn-title">Feedback Management</p>
       <div class="ad-qa-mn-btn">
-        <!-- <form method="POST" enctype="multipart/form-data" class="filter-btn">
+        <form method="POST" enctype="multipart/form-data" class="filter-btn">
           Filter&nbsp;
           <img src="./image/filter.png" alt="filter-img" />
           <select name="" id="mySelection" class="option-list-cate filter-fb" required>
@@ -26,30 +26,30 @@
             <option value="comment">Most Comment</option>
             <option value="new">Newest</option>
             <option value="end">Ended</option>
-          </select> -->
+          </select>
 
           <script>
             $(document).ready(function() {
               var selectVal = "all";
               $("#showFilterData").load("./controller/showAllFeedback.php");
 
-            //   $("#mySelection").change(function (e) { 
-            //     e.preventDefault();
-            //     selectVal = $("#mySelection").val();
-            //     console.log(selectVal);
-            //     $.post({
-            //         url: "./controller/showFilter.php",
-            //         type: "POST",
-            //         data: "id="+selectVal,
-            //         success: function (data) {
-            //             $("#showFilterData").html(data);   
-            //         }
-            //     });
-            // });
+              $("#mySelection").change(function (e) { 
+                e.preventDefault();
+                selectVal = $("#mySelection").val();
+                console.log(selectVal);
+                $.post({
+                    url: "./controller/showFilter.php",
+                    type: "POST",
+                    data: "id="+selectVal,
+                    success: function (data) {
+                        $("#showFilterData").html(data);   
+                    }
+                });
+            });
           })
           </script>
-        <!-- </form>
-        <a href="./controller/exportData.php" class="ad-qa-mn-download">Download</a> -->
+        </form>
+        <a href="./controller/exportData.php" class="ad-qa-mn-download">Download</a>
       </div>
     </div>
 
