@@ -46,17 +46,12 @@ while ($postRow = mysqli_fetch_array($fbPost, MYSQLI_ASSOC)) {
                 $feedbackId = $postRow['feedback_id'];
                 $userContact = $_SESSION['us'];
 
-                $contactCountQuery = "SELECT COUNT(`like`) AS likeCount, COUNT(`dislike`) AS dislikeCount FROM contact_tb WHERE feedback_id = $feedbackId";
-                $countResult = mysqli_query($conn, $contactCountQuery);
+                $likeCountQuery = "SELECT SUM(`like`) AS likeCount FROM contact_tb WHERE feedback_id = $feedbackId";
+                $dislikeCountQuery = "SELECT  SUM(`dislike`) AS dislikeCount FROM contact_tb WHERE feedback_id = $feedbackId";
 
-                if (mysqli_num_rows($countResult) > 0) {
-                    $row = mysqli_fetch_assoc($countResult);
-                    $likeCount = $row["likeCount"];
-                    $dislikeCount = $row["dislikeCount"];
-                } else {
-                    $likeCount = 0;
-                    $dislikeCount = 0;
-                }
+                $likeCountRes = mysqli_fetch_assoc(mysqli_query($conn, $likeCountQuery));
+                $dislikeCountRes = mysqli_fetch_assoc(mysqli_query($conn, $dislikeCountQuery));
+
 
                 $contactCheckedQuery = "SELECT `like`, `dislike` FROM contact_tb WHERE feedback_id = $feedbackId AND email = '$userContact'";
                 $isCheckedContact = mysqli_query($conn, $contactCheckedQuery);
@@ -75,38 +70,84 @@ while ($postRow = mysqli_fetch_array($fbPost, MYSQLI_ASSOC)) {
                 }
 
                 ?>
+
+
                 <!--Like press-->
-                <button type="button" class="fb-like" id="<?php echo 'like' . $postRow['feedback_id']; ?>">
+                <button type="button" class="fb-like" id="<?php echo 'like' . $postRow['feedback_id']; ?>" onclick="likeButtonPressed(<?php echo $postRow['feedback_id']; ?>)">
                     <div class="icon-outline">
-                        <img src="./image/like.png" alt="like ico" class="ico-like" style="<?php echo $isLikeChecked == 1 ? "opacity: 1" : "opacity: 0.5" ?>" />
+                        <img src="./image/like.png" alt="like ico" id="imgLike<?php echo $postRow['feedback_id']; ?>" class="ico-like" style="<?php echo $isLikeChecked == 1 ? "opacity: 1" : "opacity: 0.5" ?>" />
                     </div>
-                    <p class="fb-like-label" id="<?php echo 'numLike' . $postRow['feedback_id']; ?>"><?php echo $likeCount; ?></p>
+                    <p class="fb-like-label" id="<?php echo 'numLike' . $postRow['feedback_id']; ?>"><?php echo $likeCountRes['likeCount']; ?></p>
                 </button>
+
 
 
                 <!--Dislike press-->
-                <button type="button" class="fb-dislike" id="<?php echo 'dislike' . $postRow['feedback_id']; ?>">
+                <button type="button" class="fb-dislike" id="<?php echo 'dislike' . $postRow['feedback_id']; ?>" onclick="dislikeButtonPressed(<?php echo $postRow['feedback_id']; ?>)">
                     <div class="icon-outline">
-                        <img src="./image/like.png" alt="dislike ico" class="ico-dislike" <?php echo $isDislikeChecked == 1 ? "opacity: 1" : "opacity: 0.5" ?> />
+                        <img src="./image/like.png" alt="dislike ico" id="imgDislike<?php echo $postRow['feedback_id']; ?>" class="ico-dislike" style="<?php echo $isDislikeChecked == 1 ? "opacity: 1" : "opacity: 0.5" ?>" />
                     </div>
-                    <p class="fb-dislike-label" id="<?php echo 'numDislike' . $postRow['feedback_id']; ?>"><?php echo $dislikeCount; ?></p>
+                    <p class="fb-dislike-label" id="<?php echo 'numDislike' . $postRow['feedback_id']; ?>"><?php echo $dislikeCountRes['dislikeCount']; ?></p>
                 </button>
 
+                <script>
+                    function likeButtonPressed(feedbackId) {
+                        document.getElementById("imgLike" + feedbackId).style.opacity = "1";
+                        document.getElementById("imgDislike" + feedbackId).style.opacity = "0.5";
 
+                        $.ajax({
+                            url: "./controller/contactReload.php",
+                            type: "POST",
+                            data: "fbId=" + feedbackId,
+                            success: function(response) {
+                                var counts = JSON.parse(response);
+
+                                // console.log(counts.likeCount)
+                                // console.log(counts.dislikeCount)
+
+                                $("#numLike" + feedbackId).html(counts.likeCount);
+                                $("#numDislike" + feedbackId).html(counts.dislikeCount);
+                            }
+                        })
+
+                    }
+
+                    function dislikeButtonPressed(feedbackId) {
+                        document.getElementById("imgLike" + feedbackId).style.opacity = "0.5";
+                        document.getElementById("imgDislike" + feedbackId).style.opacity = "1";
+
+                        $.ajax({
+                            url: "./controller/contactReload.php",
+                            type: "POST",
+                            data: "fbId=" + feedbackId,
+                            success: function(response) {
+                                var counts = JSON.parse(response);
+                                // console.log(counts.likeCount)
+                                // console.log(counts.dislikeCount)
+
+
+                                $("#numLike" + feedbackId).html(counts.likeCount);
+                                $("#numDislike" + feedbackId).html(counts.dislikeCount);
+                            }
+                        })
+
+                    }
+                </script>
 
                 <!--Comment press-->
-                <div class="fb-cmt" id="">
+                <button type="button" class="fb-cmt" id="comment<?php echo $postRow['feedback_id'] ?>">
                     <div class="icon-outline">
                         <img src="./image/comment.png" alt="comment ico" class="ico-like" />
                     </div>
                     <p class="fb-cmt-label">Comment</p>
-                </div>
+                </button>
 
 
                 <?php
                 $like = "like";
                 $dislike = "dislike";
                 $contactToPostId = $postRow['feedback_id'];
+
                 ?>
                 <script>
                     $("#<?php echo 'like' . $postRow['feedback_id']; ?>").click(() => {
@@ -118,7 +159,8 @@ while ($postRow = mysqli_fetch_array($fbPost, MYSQLI_ASSOC)) {
                                 likeId: <?php echo $contactToPostId; ?>
                             },
                             success: function(response) {
-                                console.log(response);
+                                console.log(response)
+
                             }
                         })
                     })
@@ -131,7 +173,18 @@ while ($postRow = mysqli_fetch_array($fbPost, MYSQLI_ASSOC)) {
                                 dislikeId: <?php echo $contactToPostId; ?>
                             },
                             success: function(response) {
-                                console.log(response);
+                                console.log(response)
+                            }
+                        })
+                    })
+
+                    $("#comment<?php echo $postRow['feedback_id'] ?>").click(() => {
+                        localStorage.setItem("commentId", <?php echo $postRow['feedback_id']; ?>);
+                        $.post({
+                            url: "./view/home.php",
+                            type: "POST",
+                            success: function(response) {
+                                showComment();
                             }
                         })
                     })

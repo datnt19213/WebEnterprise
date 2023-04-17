@@ -34,4 +34,15 @@ WHERE contact_tb.feedback_id = '$likeId' AND contact_tb.email = '$user'";
             echo '<script>alert("Like Failed")</script>';
         }
     }
+
+    // $likeCountQuery = "SELECT SUM(`like`) AS likeCount FROM contact_tb WHERE feedback_id = $id";
+    // $dislikeCountQuery = "SELECT  SUM(`dislike`) AS dislikeCount FROM contact_tb WHERE feedback_id = $id";
+
+    // $likeCountRes = mysqli_fetch_assoc(mysqli_query($conn, $likeCountQuery));
+    // $dislikeCountRes = mysqli_fetch_assoc(mysqli_query($conn, $dislikeCountQuery));
+
+    // $counts = array(
+    //     "likeCount" => $likeCountRes['likeCount'],
+    //     "dislikeCount" => $dislikeCountRes['dislikeCount']
+    // );
 }
