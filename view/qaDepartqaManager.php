@@ -77,16 +77,16 @@
                             <p><?php echo  $row['department_name'];?></p>
                         </div>
                         
-                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['department_name'];?>">
-                            <p><?php echo  $row['department_name'];?></p>
+                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['department_desc'];?>">
+                            <p><?php echo  $row['department_desc'];?></p>
                         </div>
                         
-                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['department_name'];?>">
-                            <p><?php echo  $row['department_name'];?></p>
+                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['department_id'];?>">
+                            <p><?php echo  $row['department_id'];?></p>
                         </div>
                         
-                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['department_name'];?>">
-                            <p><?php echo  $row['department_name'];?></p>
+                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['department_id'];?>">
+                            <p><?php echo  $row['department_id'];?></p>
                         </div>
                     </div>
                 <?php

@@ -36,7 +36,7 @@
                 <?php
                 session_start();
                 include_once("../data/connection.php");
-                $result = mysqli_query($conn, "SELECT * FROM user_tb a, position_tb b, department_tb c WHERE b.position_id = a.position_id AND c.department_id = a.department_id");
+                $result = mysqli_query($conn, "SELECT * FROM user_tb a, position_tb b, department_tb c WHERE b.position_id = a.position_id AND c.department_id = a.department_id AND c.state_code=1");
 
                 if (!$result)
                 {
