@@ -534,6 +534,10 @@
     display: none;
   }
 
+  .list-comment {
+    height: 95vw;
+  }
+
   .hide-cmt {
     display: flex;
   }
