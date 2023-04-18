@@ -9,8 +9,8 @@
 </head>
 
 <body>
-    <!-- <div class="scroll-overview" style="overflows: scroll"> -->
-    <?php
+    <div class="scroll-overview" style="overflow-y: scroll; height: 70vw;">
+        <?php
         session_start();
         include_once("../data/connection.php");
 
@@ -34,63 +34,61 @@
 
         $tAnonymousComment = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM comment_tb WHERE state_code = 1"));
 
-        if (!$result)
-        {
+        if (!$result) {
             die('Invalid query: ' . mysqli_error($conn));
         }
 
-        
-        while ($rows = mysqli_fetch_array($result, MYSQLI_ASSOC))
-        {
-            ?>
 
-        <div class="departmentItem">
-            <div class="departmentName-container">
+        while ($rows = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        ?>
 
-                <header class="header" name="departmentName"><?php echo  $rows['department_name'];?></header>
+            <div class="departmentItem">
+                <div class="departmentName-container">
 
-                <div class="content">
-                    <div class="row1">
-                        <div class="totalFeedback">
-                            <p class="row1-col1-title">Total Feedback</p>
-                            <p class="row1-col1-value" name="totalFeedback"><?php echo  $tFeedback;?></p>
+                    <header class="header" name="departmentName"><?php echo  $rows['department_name']; ?></header>
+
+                    <div class="content">
+                        <div class="row1">
+                            <div class="totalFeedback">
+                                <p class="row1-col1-title">Total Feedback</p>
+                                <p class="row1-col1-value" name="totalFeedback"><?php echo  $tFeedback; ?></p>
+                            </div>
+
+                            <div class="percentFeedback">
+                                <p class="row1-col2-title">Percentage of Feedback</p>
+                                <p class="row1-col2-value" name="percentFeedback"><?php echo  $perFeedback; ?>&nbsp;%</p>
+                            </div>
+
+                            <div class="totalContributor">
+                                <p class="row1-col3-title">Total Contributor</p>
+                                <p class="row1-col3-value" name="totalContributor"><?php echo  $tContributor; ?></p>
+                            </div>
                         </div>
 
-                        <div class="percentFeedback">
-                            <p class="row1-col2-title">Percentage of Feedback</p>
-                            <p class="row1-col2-value" name="percentFeedback"><?php echo  $perFeedback;?>&nbsp;%</p>
+                        <div class="row2">
+                            <p class="row2-title">Total Feedback Without Comment</p>
+                            <p class="row2-value" name="totalFeedbackWithoutComment"><?php echo  $tFeedbackWithoutComment; ?></p>
                         </div>
 
-                        <div class="totalContributor">
-                            <p class="row1-col3-title">Total Contributor</p>
-                            <p class="row1-col3-value" name="totalContributor"><?php echo  $tContributor;?></p>
-                        </div>
-                    </div>
+                        <div class="row3">
+                            <div class="col1">
+                                <p class="row3-col1-title">Total Anonymous Feedback</p>
+                                <p class="row3-col1-value" name="totalAnonymousFeedback"><?php echo  $tAnonymousFeedback; ?></p>
+                            </div>
 
-                    <div class="row2">
-                        <p class="row2-title">Total Feedback Without Comment</p>
-                        <p class="row2-value" name="totalFeedbackWithoutComment"><?php echo  $tFeedbackWithoutComment;?></p>
-                    </div>
-
-                    <div class="row3">
-                        <div class="col1">
-                            <p class="row3-col1-title">Total Anonymous Feedback</p>
-                            <p class="row3-col1-value" name="totalAnonymousFeedback"><?php echo  $tAnonymousFeedback;?></p>
-                        </div>
-
-                        <div class="col2">
-                            <p class="row3-col2-title">Total Anonymous Comment</p>
-                            <p class="row3-col2-value" name="totalAnonymousComment"><?php echo $tAnonymousComment?></p>
+                            <div class="col2">
+                                <p class="row3-col2-title">Total Anonymous Comment</p>
+                                <p class="row3-col2-value" name="totalAnonymousComment"><?php echo $tAnonymousComment ?></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-    <?php
+        <?php
         }
-    ?>
-    <!-- </div> -->
+        ?>
+    </div>
 </body>
 
 </html>

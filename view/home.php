@@ -107,6 +107,12 @@ include_once("./data/connection.php");
                 },
                 success: function(data) {
                   $("#cmtList").html(data);
+                  if ($(window).width() < 900) {
+                    $(".hide-cmt").click(() => {
+                      $(".fb-comment").hide();
+                    });
+                    $(".fb-comment").show();
+                  }
                 }
               })
             }

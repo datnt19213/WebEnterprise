@@ -9,14 +9,13 @@
     <link rel="stylesheet" href="../css/qaManagementadmin.css"> -->
     <link rel="stylesheet" href="../css/feedbackCreate.css" />
     <link rel="stylesheet" href="../css/adminQaFeedbackManagement.css" />
-    <script src="https://code.jquery.com/jquery-3.6.4.js"
-        integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="qa-ad-fb-mn-container">
         <div class="title-contact-btn">
-            <p class="ad-qa-mn-title">QA Management Administrator</p>
+            <p class="ad-qa-mn-title">QA Management</p>
         </div>
         <div class="qa-ad-scroll-table">
             <div class="qa-ad-table-data">
@@ -32,48 +31,46 @@
                 </div>
 
                 <div class="y-scroll-tb-data">
-                <?php
-                session_start();
-                include_once("../data/connection.php");
-                $result = mysqli_query($conn, "SELECT * FROM user_tb a, position_tb b, department_tb c WHERE b.position_id = a.position_id AND c.department_id = a.department_id AND c.state_code=2");
+                    <?php
+                    session_start();
+                    include_once("../data/connection.php");
+                    $result = mysqli_query($conn, "SELECT * FROM user_tb a, position_tb b, department_tb c WHERE b.position_id = a.position_id AND c.department_id = a.department_id AND c.state_code=2");
 
-                if (!$result)
-                {
-                    die('Invalid query: ' . mysqli_error($conn));
-                }
+                    if (!$result) {
+                        die('Invalid query: ' . mysqli_error($conn));
+                    }
 
-                while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
-                {
-                ?>
-                    <div class="qa-ad-fb-tbody">
-                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['fullname'];?>" name="Name">
-                            <p><?php echo  $row['fullname'];?></p>
+                    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                    ?>
+                        <div class="qa-ad-fb-tbody">
+                            <div class="qa-ad-tbody-cell" title="<?php echo  $row['fullname']; ?>" name="Name">
+                                <p><?php echo  $row['fullname']; ?></p>
+                            </div>
+                            <div class="qa-ad-tbody-cell" title="<?php echo  $row['dob']; ?>" name="DoB">
+                                <p><?php echo  $row['dob']; ?></p>
+                            </div>
+                            <div class="qa-ad-tbody-cell" title="<?php echo  $row['tel']; ?>" name="Tel">
+                                <p><?php echo  $row['tel']; ?></p>
+                            </div>
+                            <div class="qa-ad-tbody-cell" title="<?php echo  $row['address']; ?>" name="Address">
+                                <p><?php echo  $row['address']; ?></p>
+                            </div>
+                            <div class="qa-ad-tbody-cell" title="<?php echo  $row['email']; ?>" name="Email">
+                                <p><?php echo  $row['email']; ?></p>
+                            </div>
+                            <div class="qa-ad-tbody-cell" title="<?php echo  $row['position_name']; ?>" name="Position">
+                                <p><?php echo  $row['position_name']; ?></p>
+                            </div>
+                            <div class="qa-ad-tbody-cell" title="<?php echo  $row['department_name']; ?><" name="Department">
+                                <p><?php echo  $row['department_name']; ?></p>
+                            </div>
+                            <div class="qa-ad-tbody-cell" title="<?php echo  $row['description']; ?>" name="Description">
+                                <p><?php echo  $row['description']; ?></p>
+                            </div>
                         </div>
-                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['dob'];?>" name="DoB">
-                            <p><?php echo  $row['dob'];?></p>
-                        </div>
-                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['tel'];?>" name="Tel">
-                            <p><?php echo  $row['tel'];?></p>
-                        </div>
-                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['address'];?>" name="Address">
-                            <p><?php echo  $row['address'];?></p>
-                        </div>
-                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['email'];?>" name="Email">
-                            <p><?php echo  $row['email'];?></p>
-                        </div>
-                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['position_name'];?>" name="Position">
-                            <p><?php echo  $row['position_name'];?></p>
-                        </div>
-                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['department_name'];?><" name="Department">
-                            <p><?php echo  $row['department_name'];?></p>
-                        </div>
-                        <div class="qa-ad-tbody-cell" title="<?php echo  $row['description'];?>" name="Description">
-                            <p><?php echo  $row['description'];?></p>
-                        </div>
-                    </div>
-                <?php
-                }
-                ?>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>
