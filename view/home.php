@@ -120,7 +120,12 @@ include_once("./data/connection.php");
             function submitComment() {
               var id = localStorage.getItem("commentId");
               var cmtState = $("#cmtState").is(":checked") ? 1 : 0;
+              console.log(cmtState);
               var cmtVal = $("#commentContent").val();
+              if (cmtVal === "") {
+                alert("Enter comment please");
+                return;
+              }
               console.log(cmtState, cmtVal, id);
               $.post({
                 url: "./controller/postComment.php",

@@ -75,7 +75,7 @@ require './phpmailer/src/SMTP.php';
         </div>
         <div class="submit-group">
           <label for="" class="checkbox-label-post">
-            <input type="checkbox" class="check-box-terms" name="fbCrea_TypePost" value="1" />
+            <input type="checkbox" class="check-box-terms" name="fbCrea_TypePost" />
             <p class="terms-check">Post As Anonymous</p>
           </label>
           <input type="submit" name="fbCreaSubmitBtn" class="create-fb-btn" value="Create" />
@@ -93,7 +93,7 @@ require './phpmailer/src/SMTP.php';
         $fbCrea_Cate = $_POST['fbCrea_Category'];
         $fbCrea_StartDate = $_POST['fbCrea_StartDate'];
         $fbCrea_EndDate = $_POST['fbCrea_EndDate'];
-        $fbCrea_TypePost = isset($_POST['fbCrea_TypePost']) ? $_POST['fbCrea_TypePost'] : 0;
+        $fbCrea_TypePost = isset($_POST['fbCrea_TypePost']) ? 1 : 0;
         $fbCrea_TermsCheck = isset($_POST['fbCrea_TermsCheck']) ? $_POST['fbCrea_TermsCheck'] : 0;
 
         if ($fbCrea_contentFeedback && $fbCrea_Cate && $fbCrea_StartDate && $fbCrea_EndDate) {

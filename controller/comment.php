@@ -24,13 +24,13 @@ if (isset($_POST['cmtId'])) {
 
             $userCmt = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user_tb WHERE email = '$userEmailCmt'"));
 
-            if ($state == 1) {
+            if ($state == 0) {
                 $src = $userCmt['avatar'];
                 if (!$src) {
                     $src = "./image/defaultUser.png";
                 }
             }
-            if ($state == 0) {
+            if ($state == 1) {
                 $src = "./image/Anonymous.png";
             }
 
